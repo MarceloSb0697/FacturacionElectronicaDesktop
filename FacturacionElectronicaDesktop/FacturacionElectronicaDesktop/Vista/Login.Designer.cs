@@ -77,7 +77,7 @@
             // btnIniciar
             // 
             this.btnIniciar.BackColor = System.Drawing.Color.LightSlateGray;
-            this.btnIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIniciar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnIniciar.Location = new System.Drawing.Point(323, 228);
             this.btnIniciar.Name = "btnIniciar";

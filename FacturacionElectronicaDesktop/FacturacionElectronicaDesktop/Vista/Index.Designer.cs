@@ -54,16 +54,17 @@
             // btnSalir
             // 
             this.btnSalir.Image = global::FacturacionElectronicaDesktop.Properties.Resources.usuario;
-            this.btnSalir.Location = new System.Drawing.Point(278, 536);
+            this.btnSalir.Location = new System.Drawing.Point(491, 351);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(99, 108);
             this.btnSalir.TabIndex = 9;
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // btnCuenta
             // 
             this.btnCuenta.Image = global::FacturacionElectronicaDesktop.Properties.Resources.cuenta_bancaria;
-            this.btnCuenta.Location = new System.Drawing.Point(475, 351);
+            this.btnCuenta.Location = new System.Drawing.Point(278, 351);
             this.btnCuenta.Name = "btnCuenta";
             this.btnCuenta.Size = new System.Drawing.Size(99, 108);
             this.btnCuenta.TabIndex = 8;
@@ -72,7 +73,7 @@
             // btnResumen
             // 
             this.btnResumen.Image = global::FacturacionElectronicaDesktop.Properties.Resources.resumen;
-            this.btnResumen.Location = new System.Drawing.Point(278, 351);
+            this.btnResumen.Location = new System.Drawing.Point(659, 173);
             this.btnResumen.Name = "btnResumen";
             this.btnResumen.Size = new System.Drawing.Size(99, 108);
             this.btnResumen.TabIndex = 7;
@@ -81,7 +82,7 @@
             // btnPercepcion
             // 
             this.btnPercepcion.Image = global::FacturacionElectronicaDesktop.Properties.Resources.percepciones;
-            this.btnPercepcion.Location = new System.Drawing.Point(62, 351);
+            this.btnPercepcion.Location = new System.Drawing.Point(475, 173);
             this.btnPercepcion.Name = "btnPercepcion";
             this.btnPercepcion.Size = new System.Drawing.Size(99, 108);
             this.btnPercepcion.TabIndex = 6;
@@ -90,7 +91,7 @@
             // btnRetencion
             // 
             this.btnRetencion.Image = global::FacturacionElectronicaDesktop.Properties.Resources.retenciones;
-            this.btnRetencion.Location = new System.Drawing.Point(475, 173);
+            this.btnRetencion.Location = new System.Drawing.Point(278, 173);
             this.btnRetencion.Name = "btnRetencion";
             this.btnRetencion.Size = new System.Drawing.Size(99, 108);
             this.btnRetencion.TabIndex = 5;
@@ -99,7 +100,7 @@
             // btnCompras
             // 
             this.btnCompras.Image = global::FacturacionElectronicaDesktop.Properties.Resources.compras;
-            this.btnCompras.Location = new System.Drawing.Point(278, 173);
+            this.btnCompras.Location = new System.Drawing.Point(62, 173);
             this.btnCompras.Name = "btnCompras";
             this.btnCompras.Size = new System.Drawing.Size(99, 108);
             this.btnCompras.TabIndex = 4;
@@ -108,11 +109,12 @@
             // btnConsultas
             // 
             this.btnConsultas.Image = global::FacturacionElectronicaDesktop.Properties.Resources.consultas;
-            this.btnConsultas.Location = new System.Drawing.Point(62, 173);
+            this.btnConsultas.Location = new System.Drawing.Point(659, 12);
             this.btnConsultas.Name = "btnConsultas";
             this.btnConsultas.Size = new System.Drawing.Size(99, 108);
             this.btnConsultas.TabIndex = 3;
             this.btnConsultas.UseVisualStyleBackColor = true;
+            this.btnConsultas.Click += new System.EventHandler(this.btnConsultas_Click);
             // 
             // btnClientes
             // 
@@ -122,6 +124,7 @@
             this.btnClientes.Size = new System.Drawing.Size(99, 108);
             this.btnClientes.TabIndex = 2;
             this.btnClientes.UseVisualStyleBackColor = true;
+            this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
             // btnServicios
             // 
@@ -131,6 +134,7 @@
             this.btnServicios.Size = new System.Drawing.Size(99, 108);
             this.btnServicios.TabIndex = 1;
             this.btnServicios.UseVisualStyleBackColor = true;
+            this.btnServicios.Click += new System.EventHandler(this.btnServicios_Click);
             // 
             // btnVentas
             // 
@@ -140,6 +144,7 @@
             this.btnVentas.Size = new System.Drawing.Size(99, 108);
             this.btnVentas.TabIndex = 0;
             this.btnVentas.UseVisualStyleBackColor = true;
+            this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
             // 
             // label1
             // 
@@ -175,7 +180,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(58, 303);
+            this.label4.Location = new System.Drawing.Point(655, 131);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(129, 20);
             this.label4.TabIndex = 13;
@@ -185,7 +190,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(288, 303);
+            this.label5.Location = new System.Drawing.Point(65, 303);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 20);
             this.label5.TabIndex = 14;
@@ -195,7 +200,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(471, 303);
+            this.label6.Location = new System.Drawing.Point(274, 303);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(124, 20);
             this.label6.TabIndex = 15;
@@ -205,7 +210,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(58, 477);
+            this.label7.Location = new System.Drawing.Point(471, 299);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(135, 20);
             this.label7.TabIndex = 16;
@@ -215,7 +220,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(248, 477);
+            this.label8.Location = new System.Drawing.Point(629, 299);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(168, 20);
             this.label8.TabIndex = 17;
@@ -225,7 +230,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(442, 477);
+            this.label9.Location = new System.Drawing.Point(245, 465);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(183, 20);
             this.label9.TabIndex = 18;
@@ -235,7 +240,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(303, 650);
+            this.label10.Location = new System.Drawing.Point(516, 465);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(57, 20);
             this.label10.TabIndex = 19;
@@ -246,7 +251,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(631, 685);
+            this.ClientSize = new System.Drawing.Size(836, 497);
+            this.ControlBox = false;
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);

@@ -1,0 +1,980 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FactronLCTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="numero_ruc" />
+          </Key>
+          <Property Name="numero_ruc" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="codigo_documento" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="razon_social" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telef_movil" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="telef_fijo" Type="char" MaxLength="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetalleFactura">
+          <Key>
+            <PropertyRef Name="codigo_detalle" />
+            <PropertyRef Name="num_factura" />
+          </Key>
+          <Property Name="codigo_detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="num_factura" Type="int" Nullable="false" />
+          <Property Name="codigo_producto" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="codigo_tipo_igv" Type="int" />
+          <Property Name="valor_unitario" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="subtotal" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="total_producto" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Documento">
+          <Key>
+            <PropertyRef Name="codigo_documento" />
+          </Key>
+          <Property Name="codigo_documento" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="tipo_documento" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FacturacionElectronica">
+          <Key>
+            <PropertyRef Name="num_factura" />
+          </Key>
+          <Property Name="num_factura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numero_ruc" Type="varchar" MaxLength="11" />
+          <Property Name="codigo_documentoElectronico" Type="char" MaxLength="2" />
+          <Property Name="numero_serie" Type="char" MaxLength="4" />
+          <Property Name="numero_correlativo" Type="char" MaxLength="6" />
+          <Property Name="fecha_emision" Type="date" />
+          <Property Name="codigo_operacion" Type="int" />
+          <Property Name="codigo_moneda" Type="char" MaxLength="3" />
+          <Property Name="tipo_cambio" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="fecha_vencimiento" Type="date" />
+          <Property Name="estado" Type="int" />
+          <Property Name="exonerada" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="inafecta" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="gravada" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="igv" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="gratuita" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="total_boleta" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="observacion" Type="varchar" MaxLength="50" />
+          <Property Name="codigo_TipoCredito" Type="char" MaxLength="2" />
+          <Property Name="codigo_TipoDebito" Type="char" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="Moneda">
+          <Key>
+            <PropertyRef Name="codigo_moneda" />
+          </Key>
+          <Property Name="codigo_moneda" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="descripcion_moneda" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="codigo_producto" />
+          </Key>
+          <Property Name="codigo_unidad" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="codigo_producto" Type="int" Nullable="false" />
+          <Property Name="descripcion_producto" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="codigo_moneda" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="valor_unitario" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="precio_unitario" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_DocumentoElectronico">
+          <Key>
+            <PropertyRef Name="codigo_documentoElectronico" />
+          </Key>
+          <Property Name="codigo_documentoElectronico" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="descripcion_documento" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_igv">
+          <Key>
+            <PropertyRef Name="codigo_tipo_igv" />
+          </Key>
+          <Property Name="codigo_tipo_igv" Type="int" Nullable="false" />
+          <Property Name="tipo_igv" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_NotaCredito">
+          <Key>
+            <PropertyRef Name="codigo_TipoCredito" />
+          </Key>
+          <Property Name="codigo_TipoCredito" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="descripcion_Tipo" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_NotaDebito">
+          <Key>
+            <PropertyRef Name="codigo_TipoDebito" />
+          </Key>
+          <Property Name="codigo_TipoDebito" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="descripcion_Tipo" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_Operacion">
+          <Key>
+            <PropertyRef Name="codigo_operacion" />
+          </Key>
+          <Property Name="codigo_operacion" Type="int" Nullable="false" />
+          <Property Name="tipo_operacion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Unidad_Medida">
+          <Key>
+            <PropertyRef Name="codigo_unidad" />
+          </Key>
+          <Property Name="codigo_unidad" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="descripcion_unidad" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Cliente__codigo___1BFD2C07">
+          <End Role="Documento" Type="Self.Documento" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documento">
+              <PropertyRef Name="codigo_documento" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="codigo_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleFa__codig__31EC6D26">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="codigo_producto" />
+            </Principal>
+            <Dependent Role="DetalleFactura">
+              <PropertyRef Name="codigo_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleFa__num_f__30F848ED">
+          <End Role="FacturacionElectronica" Type="Self.FacturacionElectronica" Multiplicity="1" />
+          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacturacionElectronica">
+              <PropertyRef Name="num_factura" />
+            </Principal>
+            <Dependent Role="DetalleFactura">
+              <PropertyRef Name="num_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Facturaci__codig__29572725">
+          <End Role="Tipo_Operacion" Type="Self.Tipo_Operacion" Multiplicity="0..1" />
+          <End Role="FacturacionElectronica" Type="Self.FacturacionElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Operacion">
+              <PropertyRef Name="codigo_operacion" />
+            </Principal>
+            <Dependent Role="FacturacionElectronica">
+              <PropertyRef Name="codigo_operacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Facturaci__codig__2A4B4B5E">
+          <End Role="Moneda" Type="Self.Moneda" Multiplicity="0..1" />
+          <End Role="FacturacionElectronica" Type="Self.FacturacionElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moneda">
+              <PropertyRef Name="codigo_moneda" />
+            </Principal>
+            <Dependent Role="FacturacionElectronica">
+              <PropertyRef Name="codigo_moneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Facturaci__codig__2B3F6F97">
+          <End Role="Tipo_DocumentoElectronico" Type="Self.Tipo_DocumentoElectronico" Multiplicity="0..1" />
+          <End Role="FacturacionElectronica" Type="Self.FacturacionElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_DocumentoElectronico">
+              <PropertyRef Name="codigo_documentoElectronico" />
+            </Principal>
+            <Dependent Role="FacturacionElectronica">
+              <PropertyRef Name="codigo_documentoElectronico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Facturaci__codig__2C3393D0">
+          <End Role="Tipo_NotaCredito" Type="Self.Tipo_NotaCredito" Multiplicity="0..1" />
+          <End Role="FacturacionElectronica" Type="Self.FacturacionElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_NotaCredito">
+              <PropertyRef Name="codigo_TipoCredito" />
+            </Principal>
+            <Dependent Role="FacturacionElectronica">
+              <PropertyRef Name="codigo_TipoCredito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Facturaci__codig__2D27B809">
+          <End Role="Tipo_NotaDebito" Type="Self.Tipo_NotaDebito" Multiplicity="0..1" />
+          <End Role="FacturacionElectronica" Type="Self.FacturacionElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_NotaDebito">
+              <PropertyRef Name="codigo_TipoDebito" />
+            </Principal>
+            <Dependent Role="FacturacionElectronica">
+              <PropertyRef Name="codigo_TipoDebito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Facturaci__numer__286302EC">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="FacturacionElectronica" Type="Self.FacturacionElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="numero_ruc" />
+            </Principal>
+            <Dependent Role="FacturacionElectronica">
+              <PropertyRef Name="numero_ruc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Productos__codig__1ED998B2">
+          <End Role="Unidad_Medida" Type="Self.Unidad_Medida" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unidad_Medida">
+              <PropertyRef Name="codigo_unidad" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="codigo_unidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Productos__codig__1FCDBCEB">
+          <End Role="Moneda" Type="Self.Moneda" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moneda">
+              <PropertyRef Name="codigo_moneda" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="codigo_moneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ActualizarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_doc" Type="char" Mode="In" />
+          <Parameter Name="raz_soc" Type="varchar" Mode="In" />
+          <Parameter Name="dir" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="tel_mov" Type="char" Mode="In" />
+          <Parameter Name="tel_fijo" Type="char" Mode="In" />
+          <Parameter Name="num_ruc" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ActualizarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_tipo" Type="varchar" Mode="In" />
+          <Parameter Name="des_pro" Type="varchar" Mode="In" />
+          <Parameter Name="cod_mon" Type="int" Mode="In" />
+          <Parameter Name="val" Type="decimal" Mode="In" />
+          <Parameter Name="pre" Type="decimal" Mode="In" />
+          <Parameter Name="cod_pro" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertarDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="num_fac" Type="int" Mode="In" />
+          <Parameter Name="cod_pro" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+          <Parameter Name="tipo_igv" Type="int" Mode="In" />
+          <Parameter Name="valor" Type="decimal" Mode="In" />
+          <Parameter Name="subtotal" Type="decimal" Mode="In" />
+          <Parameter Name="tot_pro" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="InsertarFactura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="num_ruc" Type="varchar" Mode="In" />
+          <Parameter Name="cod_doc" Type="char" Mode="In" />
+          <Parameter Name="num_serie" Type="char" Mode="In" />
+          <Parameter Name="num_cor" Type="char" Mode="In" />
+          <Parameter Name="fec_em" Type="date" Mode="In" />
+          <Parameter Name="cod_op" Type="int" Mode="In" />
+          <Parameter Name="cod_mon" Type="char" Mode="In" />
+          <Parameter Name="tipo" Type="decimal" Mode="In" />
+          <Parameter Name="fec_ven" Type="date" Mode="In" />
+          <Parameter Name="estado" Type="int" Mode="In" />
+          <Parameter Name="exo" Type="decimal" Mode="In" />
+          <Parameter Name="inf" Type="decimal" Mode="In" />
+          <Parameter Name="gra" Type="decimal" Mode="In" />
+          <Parameter Name="igv" Type="decimal" Mode="In" />
+          <Parameter Name="gratuita" Type="decimal" Mode="In" />
+          <Parameter Name="tot_bol" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="listarReporte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="num_fac" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="FactronLCTModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Documento" EntityType="Self.Documento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FacturacionElectronica" EntityType="Self.FacturacionElectronica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Moneda" EntityType="Self.Moneda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_DocumentoElectronico" EntityType="Self.Tipo_DocumentoElectronico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_igv" EntityType="Self.Tipo_igv" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_NotaCredito" EntityType="Self.Tipo_NotaCredito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_NotaDebito" EntityType="Self.Tipo_NotaDebito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_Operacion" EntityType="Self.Tipo_Operacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unidad_Medida" EntityType="Self.Unidad_Medida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cliente__codigo___1BFD2C07" Association="Self.FK__Cliente__codigo___1BFD2C07">
+            <End Role="Documento" EntitySet="Documento" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleFa__codig__31EC6D26" Association="Self.FK__DetalleFa__codig__31EC6D26">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleFa__num_f__30F848ED" Association="Self.FK__DetalleFa__num_f__30F848ED">
+            <End Role="FacturacionElectronica" EntitySet="FacturacionElectronica" />
+            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Facturaci__codig__29572725" Association="Self.FK__Facturaci__codig__29572725">
+            <End Role="Tipo_Operacion" EntitySet="Tipo_Operacion" />
+            <End Role="FacturacionElectronica" EntitySet="FacturacionElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Facturaci__codig__2A4B4B5E" Association="Self.FK__Facturaci__codig__2A4B4B5E">
+            <End Role="Moneda" EntitySet="Moneda" />
+            <End Role="FacturacionElectronica" EntitySet="FacturacionElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Facturaci__codig__2B3F6F97" Association="Self.FK__Facturaci__codig__2B3F6F97">
+            <End Role="Tipo_DocumentoElectronico" EntitySet="Tipo_DocumentoElectronico" />
+            <End Role="FacturacionElectronica" EntitySet="FacturacionElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Facturaci__codig__2C3393D0" Association="Self.FK__Facturaci__codig__2C3393D0">
+            <End Role="Tipo_NotaCredito" EntitySet="Tipo_NotaCredito" />
+            <End Role="FacturacionElectronica" EntitySet="FacturacionElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Facturaci__codig__2D27B809" Association="Self.FK__Facturaci__codig__2D27B809">
+            <End Role="Tipo_NotaDebito" EntitySet="Tipo_NotaDebito" />
+            <End Role="FacturacionElectronica" EntitySet="FacturacionElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Facturaci__numer__286302EC" Association="Self.FK__Facturaci__numer__286302EC">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="FacturacionElectronica" EntitySet="FacturacionElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Productos__codig__1ED998B2" Association="Self.FK__Productos__codig__1ED998B2">
+            <End Role="Unidad_Medida" EntitySet="Unidad_Medida" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Productos__codig__1FCDBCEB" Association="Self.FK__Productos__codig__1FCDBCEB">
+            <End Role="Moneda" EntitySet="Moneda" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FactronLCTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="numero_ruc" />
+          </Key>
+          <Property Name="numero_ruc" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigo_documento" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="razon_social" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telef_movil" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="telef_fijo" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Documento" Relationship="Self.FK__Cliente__codigo___1BFD2C07" FromRole="Cliente" ToRole="Documento" />
+          <NavigationProperty Name="FacturacionElectronica" Relationship="Self.FK__Facturaci__numer__286302EC" FromRole="Cliente" ToRole="FacturacionElectronica" />
+        </EntityType>
+        <EntityType Name="DetalleFactura">
+          <Key>
+            <PropertyRef Name="codigo_detalle" />
+            <PropertyRef Name="num_factura" />
+          </Key>
+          <Property Name="codigo_detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="num_factura" Type="Int32" Nullable="false" />
+          <Property Name="codigo_producto" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="codigo_tipo_igv" Type="Int32" />
+          <Property Name="valor_unitario" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="subtotal" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="total_producto" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleFa__codig__31EC6D26" FromRole="DetalleFactura" ToRole="Productos" />
+          <NavigationProperty Name="FacturacionElectronica" Relationship="Self.FK__DetalleFa__num_f__30F848ED" FromRole="DetalleFactura" ToRole="FacturacionElectronica" />
+        </EntityType>
+        <EntityType Name="Documento">
+          <Key>
+            <PropertyRef Name="codigo_documento" />
+          </Key>
+          <Property Name="codigo_documento" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="tipo_documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__codigo___1BFD2C07" FromRole="Documento" ToRole="Cliente" />
+        </EntityType>
+        <EntityType Name="FacturacionElectronica">
+          <Key>
+            <PropertyRef Name="num_factura" />
+          </Key>
+          <Property Name="num_factura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numero_ruc" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_documentoElectronico" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="numero_serie" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="numero_correlativo" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="fecha_emision" Type="DateTime" Precision="0" />
+          <Property Name="codigo_operacion" Type="Int32" />
+          <Property Name="codigo_moneda" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="tipo_cambio" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="fecha_vencimiento" Type="DateTime" Precision="0" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="exonerada" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="inafecta" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="gravada" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="igv" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="gratuita" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="total_boleta" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="observacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_TipoCredito" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="codigo_TipoDebito" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Facturaci__numer__286302EC" FromRole="FacturacionElectronica" ToRole="Cliente" />
+          <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__num_f__30F848ED" FromRole="FacturacionElectronica" ToRole="DetalleFactura" />
+          <NavigationProperty Name="Tipo_Operacion" Relationship="Self.FK__Facturaci__codig__29572725" FromRole="FacturacionElectronica" ToRole="Tipo_Operacion" />
+          <NavigationProperty Name="Moneda" Relationship="Self.FK__Facturaci__codig__2A4B4B5E" FromRole="FacturacionElectronica" ToRole="Moneda" />
+          <NavigationProperty Name="Tipo_DocumentoElectronico" Relationship="Self.FK__Facturaci__codig__2B3F6F97" FromRole="FacturacionElectronica" ToRole="Tipo_DocumentoElectronico" />
+          <NavigationProperty Name="Tipo_NotaCredito" Relationship="Self.FK__Facturaci__codig__2C3393D0" FromRole="FacturacionElectronica" ToRole="Tipo_NotaCredito" />
+          <NavigationProperty Name="Tipo_NotaDebito" Relationship="Self.FK__Facturaci__codig__2D27B809" FromRole="FacturacionElectronica" ToRole="Tipo_NotaDebito" />
+        </EntityType>
+        <EntityType Name="Moneda">
+          <Key>
+            <PropertyRef Name="codigo_moneda" />
+          </Key>
+          <Property Name="codigo_moneda" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="descripcion_moneda" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FacturacionElectronica" Relationship="Self.FK__Facturaci__codig__2A4B4B5E" FromRole="Moneda" ToRole="FacturacionElectronica" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__Productos__codig__1FCDBCEB" FromRole="Moneda" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="codigo_producto" />
+          </Key>
+          <Property Name="codigo_unidad" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigo_producto" Type="Int32" Nullable="false" />
+          <Property Name="descripcion_producto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigo_moneda" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="valor_unitario" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="precio_unitario" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__codig__31EC6D26" FromRole="Productos" ToRole="DetalleFactura" />
+          <NavigationProperty Name="Moneda" Relationship="Self.FK__Productos__codig__1FCDBCEB" FromRole="Productos" ToRole="Moneda" />
+          <NavigationProperty Name="Unidad_Medida" Relationship="Self.FK__Productos__codig__1ED998B2" FromRole="Productos" ToRole="Unidad_Medida" />
+        </EntityType>
+        <EntityType Name="Tipo_DocumentoElectronico">
+          <Key>
+            <PropertyRef Name="codigo_documentoElectronico" />
+          </Key>
+          <Property Name="codigo_documentoElectronico" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="descripcion_documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FacturacionElectronica" Relationship="Self.FK__Facturaci__codig__2B3F6F97" FromRole="Tipo_DocumentoElectronico" ToRole="FacturacionElectronica" />
+        </EntityType>
+        <EntityType Name="Tipo_igv">
+          <Key>
+            <PropertyRef Name="codigo_tipo_igv" />
+          </Key>
+          <Property Name="codigo_tipo_igv" Type="Int32" Nullable="false" />
+          <Property Name="tipo_igv1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_NotaCredito">
+          <Key>
+            <PropertyRef Name="codigo_TipoCredito" />
+          </Key>
+          <Property Name="codigo_TipoCredito" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="descripcion_Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FacturacionElectronica" Relationship="Self.FK__Facturaci__codig__2C3393D0" FromRole="Tipo_NotaCredito" ToRole="FacturacionElectronica" />
+        </EntityType>
+        <EntityType Name="Tipo_NotaDebito">
+          <Key>
+            <PropertyRef Name="codigo_TipoDebito" />
+          </Key>
+          <Property Name="codigo_TipoDebito" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="descripcion_Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FacturacionElectronica" Relationship="Self.FK__Facturaci__codig__2D27B809" FromRole="Tipo_NotaDebito" ToRole="FacturacionElectronica" />
+        </EntityType>
+        <EntityType Name="Tipo_Operacion">
+          <Key>
+            <PropertyRef Name="codigo_operacion" />
+          </Key>
+          <Property Name="codigo_operacion" Type="Int32" Nullable="false" />
+          <Property Name="tipo_operacion1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FacturacionElectronica" Relationship="Self.FK__Facturaci__codig__29572725" FromRole="Tipo_Operacion" ToRole="FacturacionElectronica" />
+        </EntityType>
+        <EntityType Name="Unidad_Medida">
+          <Key>
+            <PropertyRef Name="codigo_unidad" />
+          </Key>
+          <Property Name="codigo_unidad" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion_unidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__Productos__codig__1ED998B2" FromRole="Unidad_Medida" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Cliente__codigo___1BFD2C07">
+          <End Role="Documento" Type="Self.Documento" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documento">
+              <PropertyRef Name="codigo_documento" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="codigo_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Facturaci__numer__286302EC">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="FacturacionElectronica" Type="Self.FacturacionElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="numero_ruc" />
+            </Principal>
+            <Dependent Role="FacturacionElectronica">
+              <PropertyRef Name="numero_ruc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleFa__codig__31EC6D26">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="codigo_producto" />
+            </Principal>
+            <Dependent Role="DetalleFactura">
+              <PropertyRef Name="codigo_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleFa__num_f__30F848ED">
+          <End Role="FacturacionElectronica" Type="Self.FacturacionElectronica" Multiplicity="1" />
+          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacturacionElectronica">
+              <PropertyRef Name="num_factura" />
+            </Principal>
+            <Dependent Role="DetalleFactura">
+              <PropertyRef Name="num_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Facturaci__codig__29572725">
+          <End Role="Tipo_Operacion" Type="Self.Tipo_Operacion" Multiplicity="0..1" />
+          <End Role="FacturacionElectronica" Type="Self.FacturacionElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Operacion">
+              <PropertyRef Name="codigo_operacion" />
+            </Principal>
+            <Dependent Role="FacturacionElectronica">
+              <PropertyRef Name="codigo_operacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Facturaci__codig__2A4B4B5E">
+          <End Role="Moneda" Type="Self.Moneda" Multiplicity="0..1" />
+          <End Role="FacturacionElectronica" Type="Self.FacturacionElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moneda">
+              <PropertyRef Name="codigo_moneda" />
+            </Principal>
+            <Dependent Role="FacturacionElectronica">
+              <PropertyRef Name="codigo_moneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Facturaci__codig__2B3F6F97">
+          <End Role="Tipo_DocumentoElectronico" Type="Self.Tipo_DocumentoElectronico" Multiplicity="0..1" />
+          <End Role="FacturacionElectronica" Type="Self.FacturacionElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_DocumentoElectronico">
+              <PropertyRef Name="codigo_documentoElectronico" />
+            </Principal>
+            <Dependent Role="FacturacionElectronica">
+              <PropertyRef Name="codigo_documentoElectronico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Facturaci__codig__2C3393D0">
+          <End Role="Tipo_NotaCredito" Type="Self.Tipo_NotaCredito" Multiplicity="0..1" />
+          <End Role="FacturacionElectronica" Type="Self.FacturacionElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_NotaCredito">
+              <PropertyRef Name="codigo_TipoCredito" />
+            </Principal>
+            <Dependent Role="FacturacionElectronica">
+              <PropertyRef Name="codigo_TipoCredito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Facturaci__codig__2D27B809">
+          <End Role="Tipo_NotaDebito" Type="Self.Tipo_NotaDebito" Multiplicity="0..1" />
+          <End Role="FacturacionElectronica" Type="Self.FacturacionElectronica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_NotaDebito">
+              <PropertyRef Name="codigo_TipoDebito" />
+            </Principal>
+            <Dependent Role="FacturacionElectronica">
+              <PropertyRef Name="codigo_TipoDebito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Productos__codig__1FCDBCEB">
+          <End Role="Moneda" Type="Self.Moneda" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moneda">
+              <PropertyRef Name="codigo_moneda" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="codigo_moneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Productos__codig__1ED998B2">
+          <End Role="Unidad_Medida" Type="Self.Unidad_Medida" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unidad_Medida">
+              <PropertyRef Name="codigo_unidad" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="codigo_unidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FactronLCTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" />
+          <EntitySet Name="Documento" EntityType="Self.Documento" />
+          <EntitySet Name="FacturacionElectronica" EntityType="Self.FacturacionElectronica" />
+          <EntitySet Name="Moneda" EntityType="Self.Moneda" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
+          <EntitySet Name="Tipo_DocumentoElectronico" EntityType="Self.Tipo_DocumentoElectronico" />
+          <EntitySet Name="Tipo_igv" EntityType="Self.Tipo_igv" />
+          <EntitySet Name="Tipo_NotaCredito" EntityType="Self.Tipo_NotaCredito" />
+          <EntitySet Name="Tipo_NotaDebito" EntityType="Self.Tipo_NotaDebito" />
+          <EntitySet Name="Tipo_Operacion" EntityType="Self.Tipo_Operacion" />
+          <EntitySet Name="Unidad_Medida" EntityType="Self.Unidad_Medida" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK__Cliente__codigo___1BFD2C07" Association="Self.FK__Cliente__codigo___1BFD2C07">
+            <End Role="Documento" EntitySet="Documento" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Facturaci__numer__286302EC" Association="Self.FK__Facturaci__numer__286302EC">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="FacturacionElectronica" EntitySet="FacturacionElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleFa__codig__31EC6D26" Association="Self.FK__DetalleFa__codig__31EC6D26">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleFa__num_f__30F848ED" Association="Self.FK__DetalleFa__num_f__30F848ED">
+            <End Role="FacturacionElectronica" EntitySet="FacturacionElectronica" />
+            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Facturaci__codig__29572725" Association="Self.FK__Facturaci__codig__29572725">
+            <End Role="Tipo_Operacion" EntitySet="Tipo_Operacion" />
+            <End Role="FacturacionElectronica" EntitySet="FacturacionElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Facturaci__codig__2A4B4B5E" Association="Self.FK__Facturaci__codig__2A4B4B5E">
+            <End Role="Moneda" EntitySet="Moneda" />
+            <End Role="FacturacionElectronica" EntitySet="FacturacionElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Facturaci__codig__2B3F6F97" Association="Self.FK__Facturaci__codig__2B3F6F97">
+            <End Role="Tipo_DocumentoElectronico" EntitySet="Tipo_DocumentoElectronico" />
+            <End Role="FacturacionElectronica" EntitySet="FacturacionElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Facturaci__codig__2C3393D0" Association="Self.FK__Facturaci__codig__2C3393D0">
+            <End Role="Tipo_NotaCredito" EntitySet="Tipo_NotaCredito" />
+            <End Role="FacturacionElectronica" EntitySet="FacturacionElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Facturaci__codig__2D27B809" Association="Self.FK__Facturaci__codig__2D27B809">
+            <End Role="Tipo_NotaDebito" EntitySet="Tipo_NotaDebito" />
+            <End Role="FacturacionElectronica" EntitySet="FacturacionElectronica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Productos__codig__1FCDBCEB" Association="Self.FK__Productos__codig__1FCDBCEB">
+            <End Role="Moneda" EntitySet="Moneda" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Productos__codig__1ED998B2" Association="Self.FK__Productos__codig__1ED998B2">
+            <End Role="Unidad_Medida" EntitySet="Unidad_Medida" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <FunctionImport Name="ActualizarCliente">
+            <Parameter Name="cod_doc" Mode="In" Type="String" />
+            <Parameter Name="raz_soc" Mode="In" Type="String" />
+            <Parameter Name="dir" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="tel_mov" Mode="In" Type="String" />
+            <Parameter Name="tel_fijo" Mode="In" Type="String" />
+            <Parameter Name="num_ruc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ActualizarProductos">
+            <Parameter Name="cod_tipo" Mode="In" Type="String" />
+            <Parameter Name="des_pro" Mode="In" Type="String" />
+            <Parameter Name="cod_mon" Mode="In" Type="Int32" />
+            <Parameter Name="val" Mode="In" Type="Decimal" />
+            <Parameter Name="pre" Mode="In" Type="Decimal" />
+            <Parameter Name="cod_pro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertarDetalle">
+            <Parameter Name="num_fac" Mode="In" Type="Int32" />
+            <Parameter Name="cod_pro" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="tipo_igv" Mode="In" Type="Int32" />
+            <Parameter Name="valor" Mode="In" Type="Decimal" />
+            <Parameter Name="subtotal" Mode="In" Type="Decimal" />
+            <Parameter Name="tot_pro" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="InsertarFactura" ReturnType="Collection(Decimal)">
+            <Parameter Name="num_ruc" Mode="In" Type="String" />
+            <Parameter Name="cod_doc" Mode="In" Type="String" />
+            <Parameter Name="num_serie" Mode="In" Type="String" />
+            <Parameter Name="num_cor" Mode="In" Type="String" />
+            <Parameter Name="fec_em" Mode="In" Type="DateTime" />
+            <Parameter Name="cod_op" Mode="In" Type="Int32" />
+            <Parameter Name="cod_mon" Mode="In" Type="String" />
+            <Parameter Name="tipo" Mode="In" Type="Decimal" />
+            <Parameter Name="fec_ven" Mode="In" Type="DateTime" />
+            <Parameter Name="estado" Mode="In" Type="Int32" />
+            <Parameter Name="exo" Mode="In" Type="Decimal" />
+            <Parameter Name="inf" Mode="In" Type="Decimal" />
+            <Parameter Name="gra" Mode="In" Type="Decimal" />
+            <Parameter Name="igv" Mode="In" Type="Decimal" />
+            <Parameter Name="gratuita" Mode="In" Type="Decimal" />
+            <Parameter Name="tot_bol" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="listarReporte" ReturnType="Collection(FactronLCTModel.listarReporte_Result)">
+            <Parameter Name="num_fac" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="listarReporte_Result">
+          <Property Type="String" Name="numero_serie" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="numero_correlativo" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="numero_ruc" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="razon_social" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="direccion" Nullable="false" MaxLength="80" />
+          <Property Type="DateTime" Name="fecha_emision" Nullable="true" />
+          <Property Type="DateTime" Name="fecha_vencimiento" Nullable="true" />
+          <Property Type="String" Name="descripcion_moneda" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="descripcion_producto" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="cantidad" Nullable="true" />
+          <Property Type="String" Name="tipo_igv" Nullable="false" MaxLength="150" />
+          <Property Type="Decimal" Name="valor_unitario" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="total_producto" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="exonerada" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="inafecta" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="gravada" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="igv" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="gratuita" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="total_boleta" Nullable="true" Precision="10" Scale="2" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FactronLCTModelStoreContainer" CdmEntityContainer="FactronLCTEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="FactronLCTModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="numero_ruc" ColumnName="numero_ruc" />
+                <ScalarProperty Name="codigo_documento" ColumnName="codigo_documento" />
+                <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telef_movil" ColumnName="telef_movil" />
+                <ScalarProperty Name="telef_fijo" ColumnName="telef_fijo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleFactura">
+            <EntityTypeMapping TypeName="FactronLCTModel.DetalleFactura">
+              <MappingFragment StoreEntitySet="DetalleFactura">
+                <ScalarProperty Name="codigo_detalle" ColumnName="codigo_detalle" />
+                <ScalarProperty Name="num_factura" ColumnName="num_factura" />
+                <ScalarProperty Name="codigo_producto" ColumnName="codigo_producto" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="codigo_tipo_igv" ColumnName="codigo_tipo_igv" />
+                <ScalarProperty Name="valor_unitario" ColumnName="valor_unitario" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="total_producto" ColumnName="total_producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documento">
+            <EntityTypeMapping TypeName="FactronLCTModel.Documento">
+              <MappingFragment StoreEntitySet="Documento">
+                <ScalarProperty Name="codigo_documento" ColumnName="codigo_documento" />
+                <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacturacionElectronica">
+            <EntityTypeMapping TypeName="FactronLCTModel.FacturacionElectronica">
+              <MappingFragment StoreEntitySet="FacturacionElectronica">
+                <ScalarProperty Name="num_factura" ColumnName="num_factura" />
+                <ScalarProperty Name="numero_ruc" ColumnName="numero_ruc" />
+                <ScalarProperty Name="codigo_documentoElectronico" ColumnName="codigo_documentoElectronico" />
+                <ScalarProperty Name="numero_serie" ColumnName="numero_serie" />
+                <ScalarProperty Name="numero_correlativo" ColumnName="numero_correlativo" />
+                <ScalarProperty Name="fecha_emision" ColumnName="fecha_emision" />
+                <ScalarProperty Name="codigo_operacion" ColumnName="codigo_operacion" />
+                <ScalarProperty Name="codigo_moneda" ColumnName="codigo_moneda" />
+                <ScalarProperty Name="tipo_cambio" ColumnName="tipo_cambio" />
+                <ScalarProperty Name="fecha_vencimiento" ColumnName="fecha_vencimiento" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="exonerada" ColumnName="exonerada" />
+                <ScalarProperty Name="inafecta" ColumnName="inafecta" />
+                <ScalarProperty Name="gravada" ColumnName="gravada" />
+                <ScalarProperty Name="igv" ColumnName="igv" />
+                <ScalarProperty Name="gratuita" ColumnName="gratuita" />
+                <ScalarProperty Name="total_boleta" ColumnName="total_boleta" />
+                <ScalarProperty Name="observacion" ColumnName="observacion" />
+                <ScalarProperty Name="codigo_TipoCredito" ColumnName="codigo_TipoCredito" />
+                <ScalarProperty Name="codigo_TipoDebito" ColumnName="codigo_TipoDebito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Moneda">
+            <EntityTypeMapping TypeName="FactronLCTModel.Moneda">
+              <MappingFragment StoreEntitySet="Moneda">
+                <ScalarProperty Name="codigo_moneda" ColumnName="codigo_moneda" />
+                <ScalarProperty Name="descripcion_moneda" ColumnName="descripcion_moneda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="FactronLCTModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="codigo_unidad" ColumnName="codigo_unidad" />
+                <ScalarProperty Name="codigo_producto" ColumnName="codigo_producto" />
+                <ScalarProperty Name="descripcion_producto" ColumnName="descripcion_producto" />
+                <ScalarProperty Name="codigo_moneda" ColumnName="codigo_moneda" />
+                <ScalarProperty Name="valor_unitario" ColumnName="valor_unitario" />
+                <ScalarProperty Name="precio_unitario" ColumnName="precio_unitario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_DocumentoElectronico">
+            <EntityTypeMapping TypeName="FactronLCTModel.Tipo_DocumentoElectronico">
+              <MappingFragment StoreEntitySet="Tipo_DocumentoElectronico">
+                <ScalarProperty Name="codigo_documentoElectronico" ColumnName="codigo_documentoElectronico" />
+                <ScalarProperty Name="descripcion_documento" ColumnName="descripcion_documento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_igv">
+            <EntityTypeMapping TypeName="FactronLCTModel.Tipo_igv">
+              <MappingFragment StoreEntitySet="Tipo_igv">
+                <ScalarProperty Name="codigo_tipo_igv" ColumnName="codigo_tipo_igv" />
+                <ScalarProperty Name="tipo_igv1" ColumnName="tipo_igv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_NotaCredito">
+            <EntityTypeMapping TypeName="FactronLCTModel.Tipo_NotaCredito">
+              <MappingFragment StoreEntitySet="Tipo_NotaCredito">
+                <ScalarProperty Name="codigo_TipoCredito" ColumnName="codigo_TipoCredito" />
+                <ScalarProperty Name="descripcion_Tipo" ColumnName="descripcion_Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_NotaDebito">
+            <EntityTypeMapping TypeName="FactronLCTModel.Tipo_NotaDebito">
+              <MappingFragment StoreEntitySet="Tipo_NotaDebito">
+                <ScalarProperty Name="codigo_TipoDebito" ColumnName="codigo_TipoDebito" />
+                <ScalarProperty Name="descripcion_Tipo" ColumnName="descripcion_Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Operacion">
+            <EntityTypeMapping TypeName="FactronLCTModel.Tipo_Operacion">
+              <MappingFragment StoreEntitySet="Tipo_Operacion">
+                <ScalarProperty Name="codigo_operacion" ColumnName="codigo_operacion" />
+                <ScalarProperty Name="tipo_operacion1" ColumnName="tipo_operacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unidad_Medida">
+            <EntityTypeMapping TypeName="FactronLCTModel.Unidad_Medida">
+              <MappingFragment StoreEntitySet="Unidad_Medida">
+                <ScalarProperty Name="codigo_unidad" ColumnName="codigo_unidad" />
+                <ScalarProperty Name="descripcion_unidad" ColumnName="descripcion_unidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="FactronLCTModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ActualizarCliente" FunctionName="FactronLCTModel.Store.ActualizarCliente" />
+          <FunctionImportMapping FunctionImportName="ActualizarProductos" FunctionName="FactronLCTModel.Store.ActualizarProductos" />
+          <FunctionImportMapping FunctionImportName="InsertarDetalle" FunctionName="FactronLCTModel.Store.InsertarDetalle" />
+          <FunctionImportMapping FunctionImportName="InsertarFactura" FunctionName="FactronLCTModel.Store.InsertarFactura" />
+          <FunctionImportMapping FunctionImportName="listarReporte" FunctionName="FactronLCTModel.Store.listarReporte">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FactronLCTModel.listarReporte_Result">
+                <ScalarProperty Name="numero_serie" ColumnName="numero_serie" />
+                <ScalarProperty Name="numero_correlativo" ColumnName="numero_correlativo" />
+                <ScalarProperty Name="numero_ruc" ColumnName="numero_ruc" />
+                <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="fecha_emision" ColumnName="fecha_emision" />
+                <ScalarProperty Name="fecha_vencimiento" ColumnName="fecha_vencimiento" />
+                <ScalarProperty Name="descripcion_moneda" ColumnName="descripcion_moneda" />
+                <ScalarProperty Name="descripcion_producto" ColumnName="descripcion_producto" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="tipo_igv" ColumnName="tipo_igv" />
+                <ScalarProperty Name="valor_unitario" ColumnName="valor_unitario" />
+                <ScalarProperty Name="total_producto" ColumnName="total_producto" />
+                <ScalarProperty Name="exonerada" ColumnName="exonerada" />
+                <ScalarProperty Name="inafecta" ColumnName="inafecta" />
+                <ScalarProperty Name="gravada" ColumnName="gravada" />
+                <ScalarProperty Name="igv" ColumnName="igv" />
+                <ScalarProperty Name="gratuita" ColumnName="gratuita" />
+                <ScalarProperty Name="total_boleta" ColumnName="total_boleta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
