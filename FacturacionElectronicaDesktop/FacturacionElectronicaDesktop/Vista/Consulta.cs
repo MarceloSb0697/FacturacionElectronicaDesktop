@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DGVPrinterHelper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -180,6 +181,25 @@ namespace FacturacionElectronicaDesktop.Vista
             dgConsulta.Columns[6].HeaderText = "Moneda";
             dgConsulta.Columns[7].HeaderText = "Total";
             dgConsulta.Columns[8].HeaderText = "¿Pagado?";
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            DGVPrinter printer = new DGVPrinter();
+            printer.Title = "Reporte de consulta";
+            printer.SubTitle = string.Format("Fecha: {0}", DateTime.Now.Date.ToString("dd/MM/yyyy"));
+            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+            printer.PageNumbers = true;
+            printer.PageNumberInHeader = false;
+            printer.PorportionalColumns = true;
+            printer.HeaderCellAlignment = StringAlignment.Near;
+            printer.Footer = "Logistica Contable y Tributaria S.A.C";
+            printer.FooterSpacing = 15;
+            printer.printDocument.DefaultPageSettings.Landscape = true;
+            printer.PrintDataGridView(dgConsulta);
+           
+
+
         }
     }
 }

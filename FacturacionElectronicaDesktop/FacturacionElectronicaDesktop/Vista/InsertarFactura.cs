@@ -72,12 +72,11 @@ namespace FacturacionElectronicaDesktop.Vista
             cboProducto.DataSource = dp.ListadoTablaProductos();
             cboProducto.ValueMember = "CodigoProducto";
             cboProducto.DisplayMember = "DescripcionProducto";
-            cboProducto.Text = "Seleccionar Producto";
+            
 
             cboIGV.DataSource = di.ListadoIGV();
             cboIGV.ValueMember = "CodigoTipoIGV";
             cboIGV.DisplayMember = "Tipo_IGV";
-            cboIGV.Text = "Seleccionar IGV";
 
             cboDocumento.DataSource = dd.ListadoTipoDocumento();
             cboDocumento.ValueMember = "CodigoDocumentElectronico";
@@ -98,7 +97,10 @@ namespace FacturacionElectronicaDesktop.Vista
 
             btnEliminar.Enabled = false;
 
-            
+            dgDetalle.Columns[5].DefaultCellStyle.Format = "N2";
+            dgDetalle.Columns[6].DefaultCellStyle.Format = "N2";
+            dgDetalle.Columns[7].DefaultCellStyle.Format = "N2";
+
         }
 
         private void cboProducto_SelectionChangeCommitted(object sender, EventArgs e)
@@ -175,55 +177,54 @@ namespace FacturacionElectronicaDesktop.Vista
                     subtotal = cantidad * valorUnitario;
                     igv = subtotal * 0.18;
                     totalProducto = subtotal + igv;
-                    gravada += totalProducto;
+                    gravada += subtotal;
                     calculoIGV += igv;
-                    txtSubtotal.Text = subtotal.ToString();
-                    txtTotal.Text = totalProducto.ToString();
-                    txtGravada.Text = gravada.ToString();
-                    txtIGV.Text = calculoIGV.ToString();
+                    txtSubtotal.Text = string.Format("{0:n2}", (Math.Truncate(subtotal * 100) / 100));
+                    txtTotal.Text = string.Format("{0:n2}", (Math.Truncate(totalProducto * 100) / 100));
+                    txtGravada.Text = string.Format("{0:n2}", (Math.Truncate(gravada * 100) / 100));
+                    txtIGV.Text = string.Format("{0:n2}", (Math.Truncate(calculoIGV * 100) / 100));
                     break;
 
                 case 7:
                     subtotal = cantidad * valorUnitario;
                     totalProducto = subtotal;
                     exonerada += totalProducto;
-                    txtSubtotal.Text = subtotal.ToString();
-                    txtTotal.Text = totalProducto.ToString();
-                    txtExonerada.Text = exonerada.ToString();
+                    txtSubtotal.Text = string.Format("{0:n2}", (Math.Truncate(subtotal * 100) / 100));
+                    txtTotal.Text = string.Format("{0:n2}", (Math.Truncate(totalProducto * 100) / 100));
+                    txtExonerada.Text = string.Format("{0:n2}", (Math.Truncate(exonerada * 100) / 100));
                     break;
 
                 case 9:
                     subtotal = cantidad * valorUnitario;
                     totalProducto = subtotal;
                     inafecta += totalProducto;
-                    txtSubtotal.Text = subtotal.ToString();
-                    txtTotal.Text = totalProducto.ToString();
-                    txtInafecta.Text = inafecta.ToString();
+                    txtSubtotal.Text = string.Format("{0:n2}", (Math.Truncate(subtotal * 100) / 100));
+                    txtTotal.Text = string.Format("{0:n2}", (Math.Truncate(totalProducto * 100) / 100));
+                    txtInafecta.Text = string.Format("{0:n2}", (Math.Truncate(inafecta * 100) / 100));
                     break;
 
                 case 16:
                     subtotal = cantidad * valorUnitario;
                     totalProducto = subtotal;
                     inafecta += totalProducto;
-                    txtSubtotal.Text = subtotal.ToString();
-                    txtTotal.Text = totalProducto.ToString();
-                    txtInafecta.Text = inafecta.ToString();
+                    txtSubtotal.Text = string.Format("{0:n2}", (Math.Truncate(subtotal * 100) / 100));
+                    txtTotal.Text = string.Format("{0:n2}", (Math.Truncate(totalProducto * 100) / 100));
+                    txtInafecta.Text = string.Format("{0:n2}", (Math.Truncate(inafecta * 100) / 100));
                     break;
 
                 default:
                     subtotal = cantidad * valorUnitario;
                     totalProducto = subtotal;
                     gratuita += totalProducto;
-                    txtSubtotal.Text = subtotal.ToString();
-                    txtTotal.Text = totalProducto.ToString();
-                    txtGratuita.Text = gratuita.ToString();
+                    txtSubtotal.Text = string.Format("{0:n2}", (Math.Truncate(subtotal * 100) / 100));
+                    txtTotal.Text = string.Format("{0:n2}", (Math.Truncate(totalProducto * 100) / 100));
+                    txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
                     break;
             }
-            totalBoleta = exonerada + inafecta + gratuita + gravada + igv;
-            txtTotalBoleta.Text = totalBoleta.ToString();
+            totalBoleta = exonerada + inafecta + gravada + calculoIGV;
+            txtTotalBoleta.Text = string.Format("{0:n2}", (Math.Truncate(totalBoleta * 100) / 100));
 
-
-
+            
             cboProducto.Text = "Seleccionar Producto";
             txtCantidad.Text = "";
             cboIGV.Text = "Seleccionar IGV";
@@ -249,36 +250,36 @@ namespace FacturacionElectronicaDesktop.Vista
                     subtotal = cantidad * valorUnitario;
                     igv = subtotal * 0.18;
                     totalProducto = subtotal + igv;
-                    txtSubtotal.Text = subtotal.ToString();
-                    txtTotal.Text = totalProducto.ToString();
+                    txtSubtotal.Text = string.Format("{0:n2}", (Math.Truncate(subtotal * 100) / 100));
+                    txtTotal.Text = string.Format("{0:n2}", (Math.Truncate(totalProducto * 100) / 100));
                     break;
 
                 case 7:
                     subtotal = cantidad * valorUnitario;
                     totalProducto = subtotal;
-                    txtSubtotal.Text = subtotal.ToString();
-                    txtTotal.Text = totalProducto.ToString();
+                    txtSubtotal.Text = string.Format("{0:n2}", (Math.Truncate(subtotal * 100) / 100));
+                    txtTotal.Text = string.Format("{0:n2}", (Math.Truncate(totalProducto * 100) / 100));
                     break;
 
                 case 9:
                     subtotal = cantidad * valorUnitario;
                     totalProducto = subtotal;
-                    txtSubtotal.Text = subtotal.ToString();
-                    txtTotal.Text = totalProducto.ToString();
+                    txtSubtotal.Text = string.Format("{0:n2}", (Math.Truncate(subtotal * 100) / 100));
+                    txtTotal.Text = string.Format("{0:n2}", (Math.Truncate(totalProducto * 100) / 100));
                     break;
 
                 case 16:
                     subtotal = cantidad * valorUnitario;
                     totalProducto = subtotal;
-                    txtSubtotal.Text = subtotal.ToString();
-                    txtTotal.Text = totalProducto.ToString();
+                    txtSubtotal.Text = string.Format("{0:n2}", (Math.Truncate(subtotal * 100) / 100));
+                    txtTotal.Text = string.Format("{0:n2}", (Math.Truncate(totalProducto * 100) / 100));
                     break;
 
                 default:
                     subtotal = cantidad * valorUnitario;
                     totalProducto = subtotal;
-                    txtSubtotal.Text = subtotal.ToString();
-                    txtTotal.Text = totalProducto.ToString();
+                    txtSubtotal.Text = string.Format("{0:n2}", (Math.Truncate(subtotal * 100) / 100));
+                    txtTotal.Text = string.Format("{0:n2}", (Math.Truncate(totalProducto * 100) / 100));
                     break;
             }
 
@@ -306,6 +307,7 @@ namespace FacturacionElectronicaDesktop.Vista
             if (dgDetalle.Rows.Count == 0)
             {
                 dgDetalle.Enabled = false;
+                btnEliminar.Enabled = false;
             }
 
             cboProducto.Text = "Seleccionar Producto";
@@ -318,7 +320,6 @@ namespace FacturacionElectronicaDesktop.Vista
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            string mensaje = "";
             string numerofac = "";
             try
             {
@@ -348,30 +349,39 @@ namespace FacturacionElectronicaDesktop.Vista
                     numerofac = reader[0].ToString();
                 }
 
-                for (int i = 0; i < dgDetalle.Rows.Count; i++)
-                {
-                    SqlCommand cmd1 = new SqlCommand("InsertarDetalle", cn);
-                    cn.Open();
-                    cmd1.CommandType = CommandType.StoredProcedure;
-                    cmd1.Parameters.AddWithValue("@num_fac", numerofac);
-                    cmd1.Parameters.AddWithValue("@cod_pro", dgDetalle.CurrentRow.Cells[0].Value.ToString());
-                    cmd1.Parameters.AddWithValue("@cantidad", dgDetalle.CurrentRow.Cells[2].Value.ToString());
-                    cmd1.Parameters.AddWithValue("@tipo_igv", dgDetalle.CurrentRow.Cells[3].Value.ToString());
-                    cmd1.Parameters.AddWithValue("@valor", dgDetalle.CurrentRow.Cells[5].Value.ToString());
-                    cmd1.Parameters.AddWithValue("@subtotal", dgDetalle.CurrentRow.Cells[6].Value.ToString());
-                    cmd1.Parameters.AddWithValue("@tot_pro", dgDetalle.CurrentRow.Cells[7].Value.ToString());
-                    
-                    SqlDataReader reader1 = cmd1.ExecuteReader();
-                }
+                
             }
             catch (SqlException ex)
             {
-                mensaje = ex.Message;
+                MessageBox.Show("Error al registrar factura");
             }
             finally
             {
                 cn.Close();
             }
+
+            for (int i = 0; i < dgDetalle.Rows.Count; i++)
+            {
+                SqlCommand cmd1 = new SqlCommand("InsertarDetalle", cn);
+
+                cn.Open();
+                cmd1.CommandType = CommandType.StoredProcedure;
+                cmd1.Parameters.AddWithValue("@num_fac", numerofac);
+                cmd1.Parameters.AddWithValue("@cod_pro", dgDetalle.CurrentRow.Cells[0].Value.ToString());
+                cmd1.Parameters.AddWithValue("@cantidad", dgDetalle.CurrentRow.Cells[2].Value.ToString());
+                cmd1.Parameters.AddWithValue("@tipo_igv", dgDetalle.CurrentRow.Cells[3].Value.ToString());
+                cmd1.Parameters.AddWithValue("@valor", dgDetalle.CurrentRow.Cells[5].Value.ToString());
+                cmd1.Parameters.AddWithValue("@subtotal", dgDetalle.CurrentRow.Cells[6].Value.ToString());
+                cmd1.Parameters.AddWithValue("@tot_pro", dgDetalle.CurrentRow.Cells[7].Value.ToString());
+
+
+                SqlDataReader reader1 = cmd1.ExecuteReader();
+                cn.Close();
+            }
+            MessageBox.Show("Factura Registrada");
+           
         }
+
+    
     }
 }

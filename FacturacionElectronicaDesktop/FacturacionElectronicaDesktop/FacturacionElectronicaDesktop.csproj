@@ -87,6 +87,7 @@
     <Compile Include="DetalleFactura.cs">
       <DependentUpon>DatosFactura.tt</DependentUpon>
     </Compile>
+    <Compile Include="DGVPrinter.cs" />
     <Compile Include="Documento.cs">
       <DependentUpon>DatosFactura.tt</DependentUpon>
     </Compile>

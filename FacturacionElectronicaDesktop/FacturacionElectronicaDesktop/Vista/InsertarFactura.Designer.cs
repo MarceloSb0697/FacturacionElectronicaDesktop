@@ -62,6 +62,14 @@
             this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.dgDetalle = new System.Windows.Forms.DataGridView();
+            this.IDProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoIGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValorUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtExonerada = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txtInafecta = new System.Windows.Forms.TextBox();
@@ -78,14 +86,6 @@
             this.label22 = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.txtValorUnitario = new System.Windows.Forms.MaskedTextBox();
-            this.IDProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IDTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoIGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValorUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgDetalle)).BeginInit();
             this.SuspendLayout();
             // 
@@ -436,6 +436,61 @@
             this.dgDetalle.Size = new System.Drawing.Size(1306, 233);
             this.dgDetalle.TabIndex = 74;
             this.dgDetalle.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgDetalle_CellClick);
+            
+            // 
+            // IDProducto
+            // 
+            this.IDProducto.HeaderText = "ID Producto";
+            this.IDProducto.Name = "IDProducto";
+            this.IDProducto.ReadOnly = true;
+            // 
+            // Producto
+            // 
+            this.Producto.HeaderText = "Producto";
+            this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
+            this.Producto.Width = 180;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            this.Cantidad.Width = 180;
+            // 
+            // IDTipo
+            // 
+            this.IDTipo.HeaderText = "ID Tipo IGV";
+            this.IDTipo.Name = "IDTipo";
+            this.IDTipo.ReadOnly = true;
+            // 
+            // TipoIGV
+            // 
+            this.TipoIGV.HeaderText = "Tipo IGV";
+            this.TipoIGV.Name = "TipoIGV";
+            this.TipoIGV.ReadOnly = true;
+            this.TipoIGV.Width = 180;
+            // 
+            // ValorUnitario
+            // 
+            this.ValorUnitario.HeaderText = "Valor Unitario";
+            this.ValorUnitario.Name = "ValorUnitario";
+            this.ValorUnitario.ReadOnly = true;
+            this.ValorUnitario.Width = 180;
+            // 
+            // Subtotal
+            // 
+            this.Subtotal.HeaderText = "Subtotal";
+            this.Subtotal.Name = "Subtotal";
+            this.Subtotal.ReadOnly = true;
+            this.Subtotal.Width = 180;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Width = 210;
             // 
             // txtExonerada
             // 
@@ -598,60 +653,6 @@
             this.txtValorUnitario.Name = "txtValorUnitario";
             this.txtValorUnitario.Size = new System.Drawing.Size(132, 24);
             this.txtValorUnitario.TabIndex = 90;
-            // 
-            // IDProducto
-            // 
-            this.IDProducto.HeaderText = "ID Producto";
-            this.IDProducto.Name = "IDProducto";
-            this.IDProducto.ReadOnly = true;
-            // 
-            // Producto
-            // 
-            this.Producto.HeaderText = "Producto";
-            this.Producto.Name = "Producto";
-            this.Producto.ReadOnly = true;
-            this.Producto.Width = 180;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            this.Cantidad.Width = 180;
-            // 
-            // IDTipo
-            // 
-            this.IDTipo.HeaderText = "ID Tipo IGV";
-            this.IDTipo.Name = "IDTipo";
-            this.IDTipo.ReadOnly = true;
-            // 
-            // TipoIGV
-            // 
-            this.TipoIGV.HeaderText = "Tipo IGV";
-            this.TipoIGV.Name = "TipoIGV";
-            this.TipoIGV.ReadOnly = true;
-            this.TipoIGV.Width = 180;
-            // 
-            // ValorUnitario
-            // 
-            this.ValorUnitario.HeaderText = "Valor Unitario";
-            this.ValorUnitario.Name = "ValorUnitario";
-            this.ValorUnitario.ReadOnly = true;
-            this.ValorUnitario.Width = 180;
-            // 
-            // Subtotal
-            // 
-            this.Subtotal.HeaderText = "Subtotal";
-            this.Subtotal.Name = "Subtotal";
-            this.Subtotal.ReadOnly = true;
-            this.Subtotal.Width = 180;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            this.Total.Width = 210;
             // 
             // InsertarFactura
             // 

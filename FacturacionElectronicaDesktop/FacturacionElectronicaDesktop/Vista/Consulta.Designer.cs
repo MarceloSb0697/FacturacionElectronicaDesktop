@@ -157,6 +157,7 @@
             this.btnImprimir.TabIndex = 19;
             this.btnImprimir.Text = "IMPRIMIR";
             this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // Consulta
             // 
