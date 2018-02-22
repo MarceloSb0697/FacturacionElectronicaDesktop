@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDatos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,11 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CapaDatos;
 
 namespace FacturacionElectronicaDesktop.Vista
 {
-    public partial class InsertarFactura : Form
+    public partial class InsertarBoleta : Form
     {
         public class Estado
         {
@@ -20,7 +20,7 @@ namespace FacturacionElectronicaDesktop.Vista
             {
                 this.Name = name; this.Id = id;
             }
-            public string Name {get; set; }
+            public string Name { get; set; }
             public int Id { get; set; }
         }
 
@@ -32,30 +32,13 @@ namespace FacturacionElectronicaDesktop.Vista
         DatoDocumentoElectronico dd = new DatoDocumentoElectronico();
         SqlConnection cn = new SqlConnection("Data Source=.;Initial Catalog=FactronLCT;Integrated Security=True");
 
-        public InsertarFactura()
+        public InsertarBoleta()
         {
             InitializeComponent();
-
         }
         private BindingList<Estado> estado = new BindingList<Estado>();
 
-        private void btnVolver_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Ventas v = new Ventas();
-            v.Closed += (s, args) => this.Close();
-            v.Show();
-        }
-
-        private void btnConsultar_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            InsertarCliente inc = new InsertarCliente();
-            inc.Closed += (s, args) => this.Close();
-            inc.Show();
-        }
-
-        private void InsertarFactura_Load(object sender, EventArgs e)
+        private void InsertarBoleta_Load(object sender, EventArgs e)
         {
             cboCliente.DataSource = dc.ListarTablaCliente();
             cboCliente.ValueMember = "NumeroRuc";
@@ -73,13 +56,13 @@ namespace FacturacionElectronicaDesktop.Vista
             cboProducto.ValueMember = "CodigoProducto";
             cboProducto.DisplayMember = "DescripcionProducto";
             cboProducto.Text = "Seleccionar Producto";
-            
+
             cboIGV.DataSource = di.ListadoIGV();
             cboIGV.ValueMember = "CodigoTipoIGV";
             cboIGV.DisplayMember = "Tipo_IGV";
             cboIGV.Text = "Seleccionar IGV";
 
-            cboDocumento.DataSource = dd.ListadoTipoDocumento();
+            cboDocumento.DataSource = dd.ListadoBoleta();
             cboDocumento.ValueMember = "CodigoDocumentElectronico";
             cboDocumento.DisplayMember = "DescripcionDocumentoElectronico";
 
@@ -99,15 +82,31 @@ namespace FacturacionElectronicaDesktop.Vista
             cboProducto.SelectedIndex = -1;
             cboIGV.SelectedIndex = -1;
 
+
             txtEmisor.Text = "20522040119";
             txtRazonEmisor.Text = "Logistica Contable y Tributaria S.A.C";
-            
+
             btnEliminar.Enabled = false;
 
             dgDetalle.Columns[5].DefaultCellStyle.Format = "N2";
             dgDetalle.Columns[6].DefaultCellStyle.Format = "N2";
             dgDetalle.Columns[7].DefaultCellStyle.Format = "N2";
+        }
 
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            InsertarCliente inc = new InsertarCliente();
+            inc.Closed += (s, args) => this.Close();
+            inc.Show();
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Ventas v = new Ventas();
+            v.Closed += (s, args) => this.Close();
+            v.Show();
         }
 
         private void cboProducto_SelectionChangeCommitted(object sender, EventArgs e)
@@ -123,18 +122,16 @@ namespace FacturacionElectronicaDesktop.Vista
                 if (dr.Read())
                 {
                     txtValorUnitario.Text = dr["valor_unitario"].ToString();
-                  
-                }
-                
-            }
 
+                }
+
+            }
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             try
             {
-                
 
 
                 if (cboProducto.SelectedIndex == -1)
@@ -242,9 +239,8 @@ namespace FacturacionElectronicaDesktop.Vista
             {
                 MessageBox.Show("No se pudo agregar elemento");
             }
-
         }
-        
+
         private void cboIGV_SelectionChangeCommitted(object sender, EventArgs e)
         {
             try
@@ -297,16 +293,15 @@ namespace FacturacionElectronicaDesktop.Vista
             }
             catch (Exception ex)
             {
-                
+
                 MessageBox.Show("No se pudo realizar el calculo");
                 cboIGV.SelectedIndex = -1;
                 cboProducto.SelectedIndex = -1;
-                
-            }
 
+            }
         }
 
-        private void dgDetalle_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgDetalle_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             cboProducto.Text = dgDetalle.CurrentRow.Cells[1].Value.ToString();
             txtCantidad.Text = dgDetalle.CurrentRow.Cells[2].Value.ToString();
@@ -315,13 +310,12 @@ namespace FacturacionElectronicaDesktop.Vista
             txtSubtotal.Text = dgDetalle.CurrentRow.Cells[6].Value.ToString();
             txtTotal.Text = dgDetalle.CurrentRow.Cells[7].Value.ToString();
             btnEliminar.Enabled = true;
-
-          
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 int cantidad = Int32.Parse(txtCantidad.Text);
                 double valorUnitario = Double.Parse(txtValorUnitario.Text);
                 double subtotal = 0;
@@ -348,7 +342,7 @@ namespace FacturacionElectronicaDesktop.Vista
                     txtInafecta.Text = "0.00";
                     txtIGV.Text = "0.00";
                     txtTotalBoleta.Text = "0.00";
-                    
+
                     cboIGV.SelectedIndex = -1;
                     txtCantidad.Text = "";
                     cboProducto.SelectedIndex = -1;
@@ -357,123 +351,124 @@ namespace FacturacionElectronicaDesktop.Vista
                     txtTotal.Text = "";
                 }
 
-                else { 
-
-                switch (cboIGV.SelectedIndex)
+                else
                 {
-                    case 0:
-                        subtotal = cantidad * valorUnitario;
-                        igv = subtotal * 0.18;
-                        totalProducto = subtotal + igv;
-                        gravada -= subtotal;
-                        calculoIGV -= igv;
-                        txtGravada.Text = string.Format("{0:n2}", (Math.Truncate(gravada * 100) / 100));
-                        txtIGV.Text = string.Format("{0:n2}", (Math.Truncate(calculoIGV * 100) / 100));
-                        break;
 
-                    case 7:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        exonerada -= totalProducto;
-                        txtExonerada.Text = string.Format("{0:n2}", (Math.Truncate(exonerada * 100) / 100));
-                        break;
-                    case 9:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        inafecta -= totalProducto;
-                        txtInafecta.Text = string.Format("{0:n2}", (Math.Truncate(inafecta * 100) / 100));
-                        break;
+                    switch (cboIGV.SelectedIndex)
+                    {
+                        case 0:
+                            subtotal = cantidad * valorUnitario;
+                            igv = subtotal * 0.18;
+                            totalProducto = subtotal + igv;
+                            gravada -= subtotal;
+                            calculoIGV -= igv;
+                            txtGravada.Text = string.Format("{0:n2}", (Math.Truncate(gravada * 100) / 100));
+                            txtIGV.Text = string.Format("{0:n2}", (Math.Truncate(calculoIGV * 100) / 100));
+                            break;
 
-                    case 16:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        inafecta -= totalProducto;
-                        txtInafecta.Text = string.Format("{0:n2}", (Math.Truncate(inafecta * 100) / 100));
-                        break;
+                        case 7:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            exonerada -= totalProducto;
+                            txtExonerada.Text = string.Format("{0:n2}", (Math.Truncate(exonerada * 100) / 100));
+                            break;
+                        case 9:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            inafecta -= totalProducto;
+                            txtInafecta.Text = string.Format("{0:n2}", (Math.Truncate(inafecta * 100) / 100));
+                            break;
 
-                    case 1:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        gratuita -= totalProducto;
-                        txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
-                        break;
+                        case 16:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            inafecta -= totalProducto;
+                            txtInafecta.Text = string.Format("{0:n2}", (Math.Truncate(inafecta * 100) / 100));
+                            break;
 
-                    case 2:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        gratuita -= totalProducto;
-                        txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
-                        break;
-                    case 3:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        gratuita -= totalProducto;
-                        txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
-                        break;
-                    case 4:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        gratuita -= totalProducto;
-                        txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
-                        break;
-                    case 5:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        gratuita -= totalProducto;
-                        txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
-                        break;
-                    case 6:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        gratuita -= totalProducto;
-                        txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
-                        break;
-                    case 8:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        gratuita -= totalProducto;
-                        txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
-                        break;
-                    case 10:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        gratuita -= totalProducto;
-                        txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
-                        break;
-                    case 11:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        gratuita -= totalProducto;
-                        txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
-                        break;
-                    case 12:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        gratuita -= totalProducto;
-                        txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
-                        break;
-                    case 13:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        gratuita -= totalProducto;
-                        txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
-                        break;
-                    case 14:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        gratuita -= totalProducto;
-                        txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
-                        break;
-                    case 15:
-                        subtotal = cantidad * valorUnitario;
-                        totalProducto = subtotal;
-                        gratuita -= totalProducto;
-                        txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
-                        break;
+                        case 1:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            gratuita -= totalProducto;
+                            txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
+                            break;
 
-                }
-                totalBoleta = exonerada + inafecta + gravada + calculoIGV;
-                txtTotalBoleta.Text = string.Format("{0:n2}", (Math.Truncate(totalBoleta * 100) / 100));
+                        case 2:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            gratuita -= totalProducto;
+                            txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
+                            break;
+                        case 3:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            gratuita -= totalProducto;
+                            txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
+                            break;
+                        case 4:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            gratuita -= totalProducto;
+                            txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
+                            break;
+                        case 5:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            gratuita -= totalProducto;
+                            txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
+                            break;
+                        case 6:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            gratuita -= totalProducto;
+                            txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
+                            break;
+                        case 8:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            gratuita -= totalProducto;
+                            txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
+                            break;
+                        case 10:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            gratuita -= totalProducto;
+                            txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
+                            break;
+                        case 11:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            gratuita -= totalProducto;
+                            txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
+                            break;
+                        case 12:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            gratuita -= totalProducto;
+                            txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
+                            break;
+                        case 13:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            gratuita -= totalProducto;
+                            txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
+                            break;
+                        case 14:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            gratuita -= totalProducto;
+                            txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
+                            break;
+                        case 15:
+                            subtotal = cantidad * valorUnitario;
+                            totalProducto = subtotal;
+                            gratuita -= totalProducto;
+                            txtGratuita.Text = string.Format("{0:n2}", (Math.Truncate(gratuita * 100) / 100));
+                            break;
+
+                    }
+                    totalBoleta = exonerada + inafecta + gravada + calculoIGV;
+                    txtTotalBoleta.Text = string.Format("{0:n2}", (Math.Truncate(totalBoleta * 100) / 100));
 
                 }
 
@@ -485,11 +480,11 @@ namespace FacturacionElectronicaDesktop.Vista
                 txtTotal.Text = "";
 
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("No se ha seleccionado un registro");
             }
-           
         }
 
         private void btnInsertar_Click(object sender, EventArgs e)
@@ -546,9 +541,12 @@ namespace FacturacionElectronicaDesktop.Vista
                     reader1.Close();
                     cn1.Close();
 
+                    
+
+
                 }
 
-                DialogResult dialog = MessageBox.Show("Factura Insertada");
+                DialogResult dialog = MessageBox.Show("Boleta Insertada");
                 if (dialog == DialogResult.OK)
                 {
                     this.Hide();
@@ -558,15 +556,15 @@ namespace FacturacionElectronicaDesktop.Vista
                 }
 
 
-            } catch (SqlException ex)
+            }
+            catch (SqlException ex)
             {
-                MessageBox.Show("Error al registrar factura");
+                MessageBox.Show("Error al registrar boleta");
             }
             finally
             {
                 cn.Close();
             }
-        
         }
 
         private void cboCliente_SelectionChangeCommitted(object sender, EventArgs e)

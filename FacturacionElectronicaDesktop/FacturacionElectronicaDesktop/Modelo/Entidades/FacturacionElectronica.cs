@@ -10,6 +10,10 @@ namespace FacturacionElectronicaDesktop.Entidades
     {
         public int NumeroFactura { get; set; }
 
+        public string RucEmsior { get; set; }
+
+        public string RazonEmisor { get; set; }
+
         public string NumeroSerie { get; set; }
 
         public string NumeroCorrelativo { get; set; }
@@ -17,6 +21,8 @@ namespace FacturacionElectronicaDesktop.Entidades
         public string CodigoDocumentElectronico { get; set; }
 
         public string NumeroRuc { get; set; }
+
+        public string RazonSocial { get; set; }
 
         public DateTime FechaEmision { get; set; }
 

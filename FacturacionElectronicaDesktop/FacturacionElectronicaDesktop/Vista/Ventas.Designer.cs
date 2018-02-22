@@ -47,6 +47,7 @@
             this.lblTotalCredito = new System.Windows.Forms.Label();
             this.lblTotalDebito = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnVolver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgFacturacion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,6 +75,7 @@
             this.btnBoleta.TabIndex = 1;
             this.btnBoleta.Text = "EMITIR BOLETA";
             this.btnBoleta.UseVisualStyleBackColor = false;
+            this.btnBoleta.Click += new System.EventHandler(this.btnBoleta_Click);
             // 
             // btnNotaCredito
             // 
@@ -146,7 +148,7 @@
             this.dgFacturacion.Location = new System.Drawing.Point(221, 96);
             this.dgFacturacion.Name = "dgFacturacion";
             this.dgFacturacion.ReadOnly = true;
-            this.dgFacturacion.Size = new System.Drawing.Size(665, 283);
+            this.dgFacturacion.Size = new System.Drawing.Size(689, 283);
             this.dgFacturacion.TabIndex = 9;
             this.dgFacturacion.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgFacturacion_CellFormatting);
             // 
@@ -253,13 +255,27 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "DESDE";
             // 
+            // btnVolver
+            // 
+            this.btnVolver.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btnVolver.Location = new System.Drawing.Point(813, 48);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(97, 28);
+            this.btnVolver.TabIndex = 19;
+            this.btnVolver.Text = "CANCELAR";
+            this.btnVolver.UseVisualStyleBackColor = false;
+            this.btnVolver.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(888, 521);
+            this.ClientSize = new System.Drawing.Size(913, 521);
             this.ControlBox = false;
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.lblTotalDebito);
             this.Controls.Add(this.lblTotalCredito);
             this.Controls.Add(this.lblBoleta);
@@ -309,5 +325,6 @@
         private System.Windows.Forms.Label lblTotalCredito;
         private System.Windows.Forms.Label lblTotalDebito;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnVolver;
     }
 }

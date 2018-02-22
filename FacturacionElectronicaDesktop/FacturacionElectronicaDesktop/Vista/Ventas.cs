@@ -60,6 +60,8 @@ namespace FacturacionElectronicaDesktop.Vista
             dgFacturacion.Columns[7].HeaderText = "Total";
             dgFacturacion.Columns[8].HeaderText = "¿Pagado?";
 
+            btnVolver.Enabled = false;
+
            
             cn.Open();
             SqlCommand query = new SqlCommand("select sum(total_boleta) from FacturacionElectronica where numero_serie like 'F%'");
@@ -126,6 +128,8 @@ namespace FacturacionElectronicaDesktop.Vista
             {
                 MessageBox.Show("No se encontraron registros dentro de ese rango de fecha");
             }
+
+            btnVolver.Enabled = true;
         }
 
         private void btnFactura_Click(object sender, EventArgs e)
@@ -134,6 +138,47 @@ namespace FacturacionElectronicaDesktop.Vista
             InsertarFactura inf = new InsertarFactura();
             inf.Closed += (s, args) => this.Close();
             inf.Show();
+        }
+
+        private void btnBoleta_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            InsertarBoleta inb = new InsertarBoleta();
+            inb.Closed += (s, args) => this.Close();
+            inb.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dgFacturacion.DataSource = (from f in db.FacturacionElectronica
+                                        join m in db.Moneda on f.codigo_moneda equals m.codigo_moneda
+                                        join c in db.Cliente on f.numero_ruc equals c.numero_ruc
+
+                                        select new
+                                        {
+                                            f.fecha_emision,
+                                            f.codigo_documentoElectronico,
+                                            f.numero_serie,
+                                            f.numero_correlativo,
+                                            f.numero_ruc,
+                                            c.razon_social,
+                                            m.descripcion_moneda,
+                                            f.total_boleta,
+                                            f.estado
+                                        }).ToList();
+
+
+            dgFacturacion.Columns[0].HeaderText = "Fecha";
+            dgFacturacion.Columns[1].HeaderText = "Tipo";
+            dgFacturacion.Columns[2].HeaderText = "Serie";
+            dgFacturacion.Columns[3].HeaderText = "Correlativo";
+            dgFacturacion.Columns[4].HeaderText = "RUC";
+            dgFacturacion.Columns[5].HeaderText = "Razón Social";
+            dgFacturacion.Columns[6].HeaderText = "Moneda";
+            dgFacturacion.Columns[7].HeaderText = "Total";
+            dgFacturacion.Columns[8].HeaderText = "¿Pagado?";
+
+            btnVolver.Enabled = false;
         }
     }
 }
