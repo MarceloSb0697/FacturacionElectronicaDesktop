@@ -87,13 +87,19 @@
     </Compile>
     <Compile Include="Controlador\DatoDocumentoElectronico.cs" />
     <Compile Include="Controlador\DatosClientes.cs" />
+    <Compile Include="Controlador\DatosCuentaBancaria.cs" />
     <Compile Include="Controlador\DatosDocumento.cs" />
     <Compile Include="Controlador\DatosFactura.cs" />
     <Compile Include="Controlador\DatosIGV.cs" />
     <Compile Include="Controlador\DatosMoneda.cs" />
+    <Compile Include="Controlador\DatosNotaCredito.cs" />
+    <Compile Include="Controlador\DatosNotaDebito.cs" />
     <Compile Include="Controlador\DatosOperacion.cs" />
     <Compile Include="Controlador\DatosProductos.cs" />
     <Compile Include="Controlador\DatosUnidadMedida.cs" />
+    <Compile Include="CuentaBancaria.cs">
+      <DependentUpon>DatosFactura.tt</DependentUpon>
+    </Compile>
     <Compile Include="DatosFactura.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -122,7 +128,9 @@
     <Compile Include="listarReporte_Result.cs">
       <DependentUpon>DatosFactura.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\Entidades\CuentaBancaria.cs" />
     <Compile Include="Modelo\Entidades\Productos.cs" />
+    <Compile Include="Modelo\Entidades\TipoCuentaBancaria.cs" />
     <Compile Include="Moneda.cs">
       <DependentUpon>DatosFactura.tt</DependentUpon>
     </Compile>
@@ -135,6 +143,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="TipoCuentaBancaria.cs">
+      <DependentUpon>DatosFactura.tt</DependentUpon>
+    </Compile>
     <Compile Include="Tipo_DocumentoElectronico.cs">
       <DependentUpon>DatosFactura.tt</DependentUpon>
     </Compile>
@@ -168,6 +179,12 @@
     <Compile Include="Vista\Consulta.Designer.cs">
       <DependentUpon>Consulta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vista\CuentaBancaria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\CuentaBancaria.Designer.cs">
+      <DependentUpon>CuentaBancaria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Index.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,11 +203,29 @@
     <Compile Include="Vista\InsertarCliente.Designer.cs">
       <DependentUpon>InsertarCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vista\InsertarCuentaBancaria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\InsertarCuentaBancaria.Designer.cs">
+      <DependentUpon>InsertarCuentaBancaria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\InsertarFactura.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Vista\InsertarFactura.Designer.cs">
       <DependentUpon>InsertarFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\InsertarNotaCredito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\InsertarNotaCredito.Designer.cs">
+      <DependentUpon>InsertarNotaCredito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\InsertarNotaDebito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\InsertarNotaDebito.Designer.cs">
+      <DependentUpon>InsertarNotaDebito.cs</DependentUpon>
     </Compile>
     <Compile Include="Vista\InsertarServicio.cs">
       <SubType>Form</SubType>
@@ -236,6 +271,9 @@
     <EmbeddedResource Include="Vista\Consulta.resx">
       <DependentUpon>Consulta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vista\CuentaBancaria.resx">
+      <DependentUpon>CuentaBancaria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vista\Index.resx">
       <DependentUpon>Index.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,8 +283,17 @@
     <EmbeddedResource Include="Vista\InsertarCliente.resx">
       <DependentUpon>InsertarCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vista\InsertarCuentaBancaria.resx">
+      <DependentUpon>InsertarCuentaBancaria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vista\InsertarFactura.resx">
       <DependentUpon>InsertarFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\InsertarNotaCredito.resx">
+      <DependentUpon>InsertarNotaCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\InsertarNotaDebito.resx">
+      <DependentUpon>InsertarNotaDebito.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\InsertarServicio.resx">
       <DependentUpon>InsertarServicio.cs</DependentUpon>
@@ -295,8 +342,8 @@
   <ItemGroup>
     <Content Include="DatosFactura.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DatosFactura.Context.cs</LastGenOutput>
       <DependentUpon>DatosFactura.edmx</DependentUpon>
+      <LastGenOutput>DatosFactura.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DatosFactura.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

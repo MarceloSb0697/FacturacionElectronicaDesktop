@@ -47,5 +47,10 @@ namespace FacturacionElectronicaDesktop.Vista
             ins.Closed += (s, args) => this.Close();
             ins.Show();
         }
+
+        private void dgServicios_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgServicios.ClearSelection();
+        }
     }
 }

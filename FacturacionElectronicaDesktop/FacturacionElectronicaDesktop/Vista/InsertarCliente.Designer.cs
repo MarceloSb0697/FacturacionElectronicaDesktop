@@ -85,9 +85,11 @@
             // 
             this.txtFijo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFijo.Location = new System.Drawing.Point(172, 247);
+            this.txtFijo.MaxLength = 7;
             this.txtFijo.Name = "txtFijo";
             this.txtFijo.Size = new System.Drawing.Size(215, 24);
             this.txtFijo.TabIndex = 29;
+            this.txtFijo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFijo_KeyPress);
             // 
             // txtDireccion
             // 
@@ -102,6 +104,7 @@
             // 
             this.txtNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumero.Location = new System.Drawing.Point(17, 63);
+            this.txtNumero.MaxLength = 11;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(175, 24);
             this.txtNumero.TabIndex = 27;
@@ -189,9 +192,11 @@
             // 
             this.txtMovil.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMovil.Location = new System.Drawing.Point(582, 247);
+            this.txtMovil.MaxLength = 9;
             this.txtMovil.Name = "txtMovil";
             this.txtMovil.Size = new System.Drawing.Size(261, 24);
             this.txtMovil.TabIndex = 35;
+            this.txtMovil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMovil_KeyPress);
             // 
             // label7
             // 
@@ -241,6 +246,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "InsertarCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NUEVA ENTIDAD";
             this.Load += new System.EventHandler(this.InsertarCliente_Load);
             this.ResumeLayout(false);

@@ -57,5 +57,13 @@ namespace FacturacionElectronicaDesktop.Vista
             cl.Closed += (s, args) => this.Close();
             cl.Show();
         }
+
+        private void btnCuenta_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            CuentaBancaria cb = new CuentaBancaria();
+            cb.Closed += (s, args) => this.Close();
+            cb.Show();
+        }
     }
 }

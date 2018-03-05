@@ -34,6 +34,24 @@
             this.label25 = new System.Windows.Forms.Label();
             this.txtRazonReceptor = new System.Windows.Forms.MaskedTextBox();
             this.label23 = new System.Windows.Forms.Label();
+            this.txtCambio = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cboMoneda = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cboOperacion = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dtEmision = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtCorrelativo = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtSerie = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cboDocumento = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboCliente = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnConsultar = new System.Windows.Forms.Button();
+            this.btnConsultarValor = new System.Windows.Forms.Button();
             this.txtValorUnitario = new System.Windows.Forms.MaskedTextBox();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.txtTotalBoleta = new System.Windows.Forms.TextBox();
@@ -75,23 +93,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.dtVencimiento = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtCambio = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cboMoneda = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cboOperacion = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dtEmision = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtCorrelativo = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtSerie = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cboDocumento = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cboCliente = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnConsultar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgDetalle)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,411 +155,16 @@
             this.label23.TabIndex = 148;
             this.label23.Text = "RAZON RECEPTOR";
             // 
-            // txtValorUnitario
-            // 
-            this.txtValorUnitario.Enabled = false;
-            this.txtValorUnitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorUnitario.Location = new System.Drawing.Point(633, 186);
-            this.txtValorUnitario.Name = "txtValorUnitario";
-            this.txtValorUnitario.Size = new System.Drawing.Size(132, 24);
-            this.txtValorUnitario.TabIndex = 147;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.BackColor = System.Drawing.Color.Crimson;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEliminar.Location = new System.Drawing.Point(1175, 181);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(134, 31);
-            this.btnEliminar.TabIndex = 146;
-            this.btnEliminar.Text = "ELIMINAR";
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // txtTotalBoleta
-            // 
-            this.txtTotalBoleta.Enabled = false;
-            this.txtTotalBoleta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalBoleta.Location = new System.Drawing.Point(564, 575);
-            this.txtTotalBoleta.Name = "txtTotalBoleta";
-            this.txtTotalBoleta.Size = new System.Drawing.Size(152, 24);
-            this.txtTotalBoleta.TabIndex = 145;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(398, 580);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(108, 16);
-            this.label22.TabIndex = 144;
-            this.label22.Text = "TOTAL BOLETA";
-            // 
-            // btnVolver
-            // 
-            this.btnVolver.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVolver.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnVolver.Location = new System.Drawing.Point(442, 641);
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(175, 43);
-            this.btnVolver.TabIndex = 143;
-            this.btnVolver.Text = "VOLVER";
-            this.btnVolver.UseVisualStyleBackColor = false;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
-            // 
-            // btnInsertar
-            // 
-            this.btnInsertar.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnInsertar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsertar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnInsertar.Location = new System.Drawing.Point(211, 641);
-            this.btnInsertar.Name = "btnInsertar";
-            this.btnInsertar.Size = new System.Drawing.Size(217, 43);
-            this.btnInsertar.TabIndex = 142;
-            this.btnInsertar.Text = "CREAR COMPROBANTE";
-            this.btnInsertar.UseVisualStyleBackColor = false;
-            this.btnInsertar.Click += new System.EventHandler(this.btnInsertar_Click);
-            // 
-            // txtGratuita
-            // 
-            this.txtGratuita.Enabled = false;
-            this.txtGratuita.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGratuita.Location = new System.Drawing.Point(191, 575);
-            this.txtGratuita.Name = "txtGratuita";
-            this.txtGratuita.Size = new System.Drawing.Size(152, 24);
-            this.txtGratuita.TabIndex = 141;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(25, 580);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(77, 16);
-            this.label21.TabIndex = 140;
-            this.label21.Text = "GRATUITA";
-            // 
-            // txtIGV
-            // 
-            this.txtIGV.Enabled = false;
-            this.txtIGV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIGV.Location = new System.Drawing.Point(564, 528);
-            this.txtIGV.Name = "txtIGV";
-            this.txtIGV.Size = new System.Drawing.Size(152, 24);
-            this.txtIGV.TabIndex = 139;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(398, 533);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(30, 16);
-            this.label20.TabIndex = 138;
-            this.label20.Text = "IGV";
-            // 
-            // txtGravada
-            // 
-            this.txtGravada.Enabled = false;
-            this.txtGravada.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGravada.Location = new System.Drawing.Point(191, 525);
-            this.txtGravada.Name = "txtGravada";
-            this.txtGravada.Size = new System.Drawing.Size(152, 24);
-            this.txtGravada.TabIndex = 137;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(25, 530);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(74, 16);
-            this.label19.TabIndex = 136;
-            this.label19.Text = "GRAVADA";
-            // 
-            // txtInafecta
-            // 
-            this.txtInafecta.Enabled = false;
-            this.txtInafecta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInafecta.Location = new System.Drawing.Point(564, 479);
-            this.txtInafecta.Name = "txtInafecta";
-            this.txtInafecta.Size = new System.Drawing.Size(152, 24);
-            this.txtInafecta.TabIndex = 135;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(398, 484);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(74, 16);
-            this.label18.TabIndex = 134;
-            this.label18.Text = "INAFECTA";
-            // 
-            // txtExonerada
-            // 
-            this.txtExonerada.Enabled = false;
-            this.txtExonerada.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtExonerada.Location = new System.Drawing.Point(191, 476);
-            this.txtExonerada.Name = "txtExonerada";
-            this.txtExonerada.Size = new System.Drawing.Size(152, 24);
-            this.txtExonerada.TabIndex = 133;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(25, 481);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(92, 16);
-            this.label17.TabIndex = 132;
-            this.label17.Text = "EXONERADA";
-            // 
-            // dgDetalle
-            // 
-            this.dgDetalle.AllowUserToAddRows = false;
-            this.dgDetalle.AllowUserToDeleteRows = false;
-            this.dgDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgDetalle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IDProducto,
-            this.Producto,
-            this.Cantidad,
-            this.IDTipo,
-            this.TipoIGV,
-            this.ValorUnitario,
-            this.Subtotal,
-            this.Total});
-            this.dgDetalle.Enabled = false;
-            this.dgDetalle.Location = new System.Drawing.Point(3, 229);
-            this.dgDetalle.Name = "dgDetalle";
-            this.dgDetalle.ReadOnly = true;
-            this.dgDetalle.Size = new System.Drawing.Size(1306, 233);
-            this.dgDetalle.TabIndex = 131;
-            this.dgDetalle.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgDetalle_CellContentClick);
-            // 
-            // IDProducto
-            // 
-            this.IDProducto.HeaderText = "ID Producto";
-            this.IDProducto.Name = "IDProducto";
-            this.IDProducto.ReadOnly = true;
-            // 
-            // Producto
-            // 
-            this.Producto.HeaderText = "Producto";
-            this.Producto.Name = "Producto";
-            this.Producto.ReadOnly = true;
-            this.Producto.Width = 180;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            this.Cantidad.Width = 180;
-            // 
-            // IDTipo
-            // 
-            this.IDTipo.HeaderText = "ID Tipo IGV";
-            this.IDTipo.Name = "IDTipo";
-            this.IDTipo.ReadOnly = true;
-            // 
-            // TipoIGV
-            // 
-            this.TipoIGV.HeaderText = "Tipo IGV";
-            this.TipoIGV.Name = "TipoIGV";
-            this.TipoIGV.ReadOnly = true;
-            this.TipoIGV.Width = 180;
-            // 
-            // ValorUnitario
-            // 
-            this.ValorUnitario.HeaderText = "Valor Unitario";
-            this.ValorUnitario.Name = "ValorUnitario";
-            this.ValorUnitario.ReadOnly = true;
-            this.ValorUnitario.Width = 180;
-            // 
-            // Subtotal
-            // 
-            this.Subtotal.HeaderText = "Subtotal";
-            this.Subtotal.Name = "Subtotal";
-            this.Subtotal.ReadOnly = true;
-            this.Subtotal.Width = 180;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            this.Total.Width = 210;
-            // 
-            // txtTotal
-            // 
-            this.txtTotal.Enabled = false;
-            this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(906, 186);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(123, 24);
-            this.txtTotal.TabIndex = 130;
-            // 
-            // txtSubtotal
-            // 
-            this.txtSubtotal.Enabled = false;
-            this.txtSubtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSubtotal.Location = new System.Drawing.Point(791, 186);
-            this.txtSubtotal.Name = "txtSubtotal";
-            this.txtSubtotal.Size = new System.Drawing.Size(109, 24);
-            this.txtSubtotal.TabIndex = 129;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAgregar.Location = new System.Drawing.Point(1035, 181);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(134, 31);
-            this.btnAgregar.TabIndex = 128;
-            this.btnAgregar.Text = "AGREGAR";
-            this.btnAgregar.UseVisualStyleBackColor = false;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(941, 159);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(52, 16);
-            this.label16.TabIndex = 127;
-            this.label16.Text = "TOTAL";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(802, 159);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(80, 16);
-            this.label15.TabIndex = 126;
-            this.label15.Text = "SUBTOTAL";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(645, 159);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(120, 16);
-            this.label14.TabIndex = 125;
-            this.label14.Text = "VALOR UNITARIO";
-            // 
-            // cboIGV
-            // 
-            this.cboIGV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboIGV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboIGV.FormattingEnabled = true;
-            this.cboIGV.Location = new System.Drawing.Point(329, 186);
-            this.cboIGV.Name = "cboIGV";
-            this.cboIGV.Size = new System.Drawing.Size(288, 26);
-            this.cboIGV.TabIndex = 124;
-            this.cboIGV.SelectionChangeCommitted += new System.EventHandler(this.cboIGV_SelectionChangeCommitted);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(409, 159);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(64, 16);
-            this.label13.TabIndex = 123;
-            this.label13.Text = "TIPO IGV";
-            // 
-            // txtCantidad
-            // 
-            this.txtCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidad.Location = new System.Drawing.Point(201, 188);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(111, 24);
-            this.txtCantidad.TabIndex = 122;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(209, 156);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(77, 16);
-            this.label12.TabIndex = 121;
-            this.label12.Text = "CANTIDAD";
-            // 
-            // cboProducto
-            // 
-            this.cboProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboProducto.FormattingEnabled = true;
-            this.cboProducto.Location = new System.Drawing.Point(3, 188);
-            this.cboProducto.Name = "cboProducto";
-            this.cboProducto.Size = new System.Drawing.Size(175, 26);
-            this.cboProducto.TabIndex = 120;
-            this.cboProducto.SelectionChangeCommitted += new System.EventHandler(this.cboProducto_SelectionChangeCommitted);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(36, 159);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(85, 16);
-            this.label11.TabIndex = 119;
-            this.label11.Text = "PRODUCTO";
-            // 
-            // cboEstado
-            // 
-            this.cboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboEstado.FormattingEnabled = true;
-            this.cboEstado.Location = new System.Drawing.Point(1246, 118);
-            this.cboEstado.Name = "cboEstado";
-            this.cboEstado.Size = new System.Drawing.Size(66, 26);
-            this.cboEstado.TabIndex = 118;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(1243, 88);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(79, 16);
-            this.label10.TabIndex = 117;
-            this.label10.Text = "¿PAGADO?";
-            // 
-            // dtVencimiento
-            // 
-            this.dtVencimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtVencimiento.Location = new System.Drawing.Point(1003, 120);
-            this.dtVencimiento.Name = "dtVencimiento";
-            this.dtVencimiento.Size = new System.Drawing.Size(200, 24);
-            this.dtVencimiento.TabIndex = 116;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(1030, 89);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(148, 16);
-            this.label9.TabIndex = 115;
-            this.label9.Text = "FECHA VENCIMIENTO";
-            // 
             // txtCambio
             // 
+            this.txtCambio.Enabled = false;
             this.txtCambio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCambio.Location = new System.Drawing.Point(854, 120);
+            this.txtCambio.MaxLength = 5;
             this.txtCambio.Name = "txtCambio";
             this.txtCambio.Size = new System.Drawing.Size(111, 24);
             this.txtCambio.TabIndex = 114;
+            this.txtCambio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCambio_KeyPress);
             // 
             // label8
             // 
@@ -633,6 +239,7 @@
             // 
             this.txtCorrelativo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCorrelativo.Location = new System.Drawing.Point(113, 120);
+            this.txtCorrelativo.MaxLength = 6;
             this.txtCorrelativo.Name = "txtCorrelativo";
             this.txtCorrelativo.Size = new System.Drawing.Size(111, 24);
             this.txtCorrelativo.TabIndex = 106;
@@ -651,6 +258,7 @@
             // 
             this.txtSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSerie.Location = new System.Drawing.Point(3, 120);
+            this.txtSerie.MaxLength = 4;
             this.txtSerie.Name = "txtSerie";
             this.txtSerie.Size = new System.Drawing.Size(89, 24);
             this.txtSerie.TabIndex = 104;
@@ -719,19 +327,426 @@
             this.btnConsultar.UseVisualStyleBackColor = false;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
+            // btnConsultarValor
+            // 
+            this.btnConsultarValor.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnConsultarValor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultarValor.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnConsultarValor.Location = new System.Drawing.Point(993, 107);
+            this.btnConsultarValor.Name = "btnConsultarValor";
+            this.btnConsultarValor.Size = new System.Drawing.Size(264, 47);
+            this.btnConsultarValor.TabIndex = 187;
+            this.btnConsultarValor.Text = "CONSULTAR VALOR UNITARIO SUNAT";
+            this.btnConsultarValor.UseVisualStyleBackColor = false;
+            this.btnConsultarValor.Click += new System.EventHandler(this.btnConsultarValor_Click);
+            // 
+            // txtValorUnitario
+            // 
+            this.txtValorUnitario.Enabled = false;
+            this.txtValorUnitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorUnitario.Location = new System.Drawing.Point(636, 249);
+            this.txtValorUnitario.Name = "txtValorUnitario";
+            this.txtValorUnitario.Size = new System.Drawing.Size(132, 24);
+            this.txtValorUnitario.TabIndex = 186;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.Color.Crimson;
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEliminar.Location = new System.Drawing.Point(1178, 244);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(134, 31);
+            this.btnEliminar.TabIndex = 185;
+            this.btnEliminar.Text = "ELIMINAR";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // txtTotalBoleta
+            // 
+            this.txtTotalBoleta.Enabled = false;
+            this.txtTotalBoleta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalBoleta.Location = new System.Drawing.Point(947, 592);
+            this.txtTotalBoleta.Name = "txtTotalBoleta";
+            this.txtTotalBoleta.Size = new System.Drawing.Size(152, 24);
+            this.txtTotalBoleta.TabIndex = 184;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(781, 597);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(108, 16);
+            this.label22.TabIndex = 183;
+            this.label22.Text = "TOTAL BOLETA";
+            // 
+            // btnVolver
+            // 
+            this.btnVolver.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnVolver.Location = new System.Drawing.Point(425, 641);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(175, 43);
+            this.btnVolver.TabIndex = 182;
+            this.btnVolver.Text = "VOLVER";
+            this.btnVolver.UseVisualStyleBackColor = false;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
+            // btnInsertar
+            // 
+            this.btnInsertar.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnInsertar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsertar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnInsertar.Location = new System.Drawing.Point(194, 641);
+            this.btnInsertar.Name = "btnInsertar";
+            this.btnInsertar.Size = new System.Drawing.Size(217, 43);
+            this.btnInsertar.TabIndex = 181;
+            this.btnInsertar.Text = "CREAR COMPROBANTE";
+            this.btnInsertar.UseVisualStyleBackColor = false;
+            this.btnInsertar.Click += new System.EventHandler(this.btnInsertar_Click);
+            // 
+            // txtGratuita
+            // 
+            this.txtGratuita.Enabled = false;
+            this.txtGratuita.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGratuita.Location = new System.Drawing.Point(557, 589);
+            this.txtGratuita.Name = "txtGratuita";
+            this.txtGratuita.Size = new System.Drawing.Size(152, 24);
+            this.txtGratuita.TabIndex = 180;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(391, 594);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(77, 16);
+            this.label21.TabIndex = 179;
+            this.label21.Text = "GRATUITA";
+            // 
+            // txtIGV
+            // 
+            this.txtIGV.Enabled = false;
+            this.txtIGV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIGV.Location = new System.Drawing.Point(184, 589);
+            this.txtIGV.Name = "txtIGV";
+            this.txtIGV.Size = new System.Drawing.Size(152, 24);
+            this.txtIGV.TabIndex = 178;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(18, 594);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(30, 16);
+            this.label20.TabIndex = 177;
+            this.label20.Text = "IGV";
+            // 
+            // txtGravada
+            // 
+            this.txtGravada.Enabled = false;
+            this.txtGravada.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGravada.Location = new System.Drawing.Point(947, 548);
+            this.txtGravada.Name = "txtGravada";
+            this.txtGravada.Size = new System.Drawing.Size(152, 24);
+            this.txtGravada.TabIndex = 176;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(781, 553);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(74, 16);
+            this.label19.TabIndex = 175;
+            this.label19.Text = "GRAVADA";
+            // 
+            // txtInafecta
+            // 
+            this.txtInafecta.Enabled = false;
+            this.txtInafecta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInafecta.Location = new System.Drawing.Point(557, 548);
+            this.txtInafecta.Name = "txtInafecta";
+            this.txtInafecta.Size = new System.Drawing.Size(152, 24);
+            this.txtInafecta.TabIndex = 174;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(391, 553);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(74, 16);
+            this.label18.TabIndex = 173;
+            this.label18.Text = "INAFECTA";
+            // 
+            // txtExonerada
+            // 
+            this.txtExonerada.Enabled = false;
+            this.txtExonerada.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtExonerada.Location = new System.Drawing.Point(184, 545);
+            this.txtExonerada.Name = "txtExonerada";
+            this.txtExonerada.Size = new System.Drawing.Size(152, 24);
+            this.txtExonerada.TabIndex = 172;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(18, 550);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(92, 16);
+            this.label17.TabIndex = 171;
+            this.label17.Text = "EXONERADA";
+            // 
+            // dgDetalle
+            // 
+            this.dgDetalle.AllowUserToAddRows = false;
+            this.dgDetalle.AllowUserToDeleteRows = false;
+            this.dgDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgDetalle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IDProducto,
+            this.Producto,
+            this.Cantidad,
+            this.IDTipo,
+            this.TipoIGV,
+            this.ValorUnitario,
+            this.Subtotal,
+            this.Total});
+            this.dgDetalle.Enabled = false;
+            this.dgDetalle.Location = new System.Drawing.Point(3, 298);
+            this.dgDetalle.Name = "dgDetalle";
+            this.dgDetalle.ReadOnly = true;
+            this.dgDetalle.Size = new System.Drawing.Size(1306, 233);
+            this.dgDetalle.TabIndex = 170;
+            this.dgDetalle.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgDetalle_CellContentClick);
+            this.dgDetalle.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgDetalle_DataBindingComplete);
+            // 
+            // IDProducto
+            // 
+            this.IDProducto.HeaderText = "ID Producto";
+            this.IDProducto.Name = "IDProducto";
+            this.IDProducto.ReadOnly = true;
+            // 
+            // Producto
+            // 
+            this.Producto.HeaderText = "Producto";
+            this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
+            this.Producto.Width = 180;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            this.Cantidad.Width = 180;
+            // 
+            // IDTipo
+            // 
+            this.IDTipo.HeaderText = "ID Tipo IGV";
+            this.IDTipo.Name = "IDTipo";
+            this.IDTipo.ReadOnly = true;
+            // 
+            // TipoIGV
+            // 
+            this.TipoIGV.HeaderText = "Tipo IGV";
+            this.TipoIGV.Name = "TipoIGV";
+            this.TipoIGV.ReadOnly = true;
+            this.TipoIGV.Width = 180;
+            // 
+            // ValorUnitario
+            // 
+            this.ValorUnitario.HeaderText = "Valor Unitario";
+            this.ValorUnitario.Name = "ValorUnitario";
+            this.ValorUnitario.ReadOnly = true;
+            this.ValorUnitario.Width = 180;
+            // 
+            // Subtotal
+            // 
+            this.Subtotal.HeaderText = "Subtotal";
+            this.Subtotal.Name = "Subtotal";
+            this.Subtotal.ReadOnly = true;
+            this.Subtotal.Width = 180;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Width = 210;
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Enabled = false;
+            this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal.Location = new System.Drawing.Point(909, 249);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(123, 24);
+            this.txtTotal.TabIndex = 169;
+            // 
+            // txtSubtotal
+            // 
+            this.txtSubtotal.Enabled = false;
+            this.txtSubtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSubtotal.Location = new System.Drawing.Point(794, 249);
+            this.txtSubtotal.Name = "txtSubtotal";
+            this.txtSubtotal.Size = new System.Drawing.Size(109, 24);
+            this.txtSubtotal.TabIndex = 168;
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAgregar.Location = new System.Drawing.Point(1038, 244);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(134, 31);
+            this.btnAgregar.TabIndex = 167;
+            this.btnAgregar.Text = "AGREGAR";
+            this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(944, 222);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(52, 16);
+            this.label16.TabIndex = 166;
+            this.label16.Text = "TOTAL";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(805, 222);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(80, 16);
+            this.label15.TabIndex = 165;
+            this.label15.Text = "SUBTOTAL";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(648, 222);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(120, 16);
+            this.label14.TabIndex = 164;
+            this.label14.Text = "VALOR UNITARIO";
+            // 
+            // cboIGV
+            // 
+            this.cboIGV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboIGV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboIGV.FormattingEnabled = true;
+            this.cboIGV.Location = new System.Drawing.Point(332, 249);
+            this.cboIGV.Name = "cboIGV";
+            this.cboIGV.Size = new System.Drawing.Size(288, 26);
+            this.cboIGV.TabIndex = 163;
+            this.cboIGV.SelectionChangeCommitted += new System.EventHandler(this.cboIGV_SelectionChangeCommitted);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(412, 222);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(64, 16);
+            this.label13.TabIndex = 162;
+            this.label13.Text = "TIPO IGV";
+            // 
+            // txtCantidad
+            // 
+            this.txtCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidad.Location = new System.Drawing.Point(204, 251);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(111, 24);
+            this.txtCantidad.TabIndex = 161;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(212, 219);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(77, 16);
+            this.label12.TabIndex = 160;
+            this.label12.Text = "CANTIDAD";
+            // 
+            // cboProducto
+            // 
+            this.cboProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboProducto.FormattingEnabled = true;
+            this.cboProducto.Location = new System.Drawing.Point(6, 251);
+            this.cboProducto.Name = "cboProducto";
+            this.cboProducto.Size = new System.Drawing.Size(175, 26);
+            this.cboProducto.TabIndex = 159;
+            this.cboProducto.SelectionChangeCommitted += new System.EventHandler(this.cboProducto_SelectionChangeCommitted);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(39, 222);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(85, 16);
+            this.label11.TabIndex = 158;
+            this.label11.Text = "PRODUCTO";
+            // 
+            // cboEstado
+            // 
+            this.cboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboEstado.FormattingEnabled = true;
+            this.cboEstado.Location = new System.Drawing.Point(586, 173);
+            this.cboEstado.Name = "cboEstado";
+            this.cboEstado.Size = new System.Drawing.Size(66, 26);
+            this.cboEstado.TabIndex = 157;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(490, 179);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(79, 16);
+            this.label10.TabIndex = 156;
+            this.label10.Text = "¿PAGADO?";
+            // 
+            // dtVencimiento
+            // 
+            this.dtVencimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtVencimiento.Location = new System.Drawing.Point(266, 176);
+            this.dtVencimiento.Name = "dtVencimiento";
+            this.dtVencimiento.Size = new System.Drawing.Size(200, 24);
+            this.dtVencimiento.TabIndex = 155;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(103, 183);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(148, 16);
+            this.label9.TabIndex = 154;
+            this.label9.Text = "FECHA VENCIMIENTO";
+            // 
             // InsertarBoleta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1324, 692);
+            this.ClientSize = new System.Drawing.Size(1324, 689);
             this.ControlBox = false;
-            this.Controls.Add(this.txtEmisor);
-            this.Controls.Add(this.txtRazonEmisor);
-            this.Controls.Add(this.label24);
-            this.Controls.Add(this.label25);
-            this.Controls.Add(this.txtRazonReceptor);
-            this.Controls.Add(this.label23);
+            this.Controls.Add(this.btnConsultarValor);
             this.Controls.Add(this.txtValorUnitario);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.txtTotalBoleta);
@@ -765,6 +780,12 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dtVencimiento);
             this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtEmisor);
+            this.Controls.Add(this.txtRazonEmisor);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.txtRazonReceptor);
+            this.Controls.Add(this.label23);
             this.Controls.Add(this.txtCambio);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cboMoneda);
@@ -783,6 +804,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnConsultar);
             this.Name = "InsertarBoleta";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EMITIR BOLETA";
             this.Load += new System.EventHandler(this.InsertarBoleta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgDetalle)).EndInit();
@@ -799,6 +821,24 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.MaskedTextBox txtRazonReceptor;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox txtCambio;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cboMoneda;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cboOperacion;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker dtEmision;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtCorrelativo;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtSerie;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cboDocumento;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboCliente;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnConsultar;
+        private System.Windows.Forms.Button btnConsultarValor;
         private System.Windows.Forms.MaskedTextBox txtValorUnitario;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.TextBox txtTotalBoleta;
@@ -840,22 +880,5 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dtVencimiento;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtCambio;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox cboMoneda;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cboOperacion;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dtEmision;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtCorrelativo;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtSerie;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cboDocumento;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cboCliente;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnConsultar;
     }
 }

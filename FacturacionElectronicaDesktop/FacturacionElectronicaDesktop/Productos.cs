@@ -15,12 +15,11 @@ namespace FacturacionElectronicaDesktop
     public partial class Productos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Productos(string text)
+        public Productos()
         {
             this.DetalleFactura = new HashSet<DetalleFactura>();
         }
-
-        
+    
         public string codigo_unidad { get; set; }
         public int codigo_producto { get; set; }
         public string descripcion_producto { get; set; }

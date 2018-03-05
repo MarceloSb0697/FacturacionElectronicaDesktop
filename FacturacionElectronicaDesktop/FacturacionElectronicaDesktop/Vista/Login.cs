@@ -44,5 +44,7 @@ namespace FacturacionElectronicaDesktop
             }
             cn.Close();
         }
+
+       
     }
 }

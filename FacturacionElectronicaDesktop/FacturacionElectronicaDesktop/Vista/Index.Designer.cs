@@ -69,6 +69,7 @@
             this.btnCuenta.Size = new System.Drawing.Size(99, 108);
             this.btnCuenta.TabIndex = 8;
             this.btnCuenta.UseVisualStyleBackColor = true;
+            this.btnCuenta.Click += new System.EventHandler(this.btnCuenta_Click);
             // 
             // btnResumen
             // 
@@ -131,7 +132,7 @@
             this.btnServicios.Image = global::FacturacionElectronicaDesktop.Properties.Resources.servicios;
             this.btnServicios.Location = new System.Drawing.Point(278, 12);
             this.btnServicios.Name = "btnServicios";
-            this.btnServicios.Size = new System.Drawing.Size(99, 108);
+            this.btnServicios.Size = new System.Drawing.Size(100, 100);
             this.btnServicios.TabIndex = 1;
             this.btnServicios.UseVisualStyleBackColor = true;
             this.btnServicios.Click += new System.EventHandler(this.btnServicios_Click);
@@ -274,6 +275,7 @@
             this.Controls.Add(this.btnServicios);
             this.Controls.Add(this.btnVentas);
             this.Name = "Index";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISTEMA DE FACTURACIÓN";
             this.ResumeLayout(false);
             this.PerformLayout();

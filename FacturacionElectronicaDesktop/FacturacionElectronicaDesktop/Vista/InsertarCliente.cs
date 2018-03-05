@@ -113,17 +113,90 @@ namespace FacturacionElectronicaDesktop.Vista
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (txtNumero.Text == "")
+                {
+                    MessageBox.Show("Debe ingresar Numero de RUC");
+                    txtNumero.Focus();
+                }
 
-            string q = "insert into Cliente values('" + txtNumero.Text + "','" + cboTipo.SelectedValue.ToString() + "','" + txtRazon.Text + "','" + txtDireccion.Text + "','" + txtEmail.Text + "','" + txtFijo.Text + "','"+  txtMovil.Text + "')";
-            cn.Open();
-            SqlCommand cmd = new SqlCommand(q, cn);
-            cmd.ExecuteNonQuery();
-            cn.Close();
-            MessageBox.Show("Cliente Insertado");
-            this.Hide();
-            Clientes cl = new Clientes();
-            cl.Closed += (s, args) => this.Close();
-            cl.Show();
+                if (txtEmail.Text == "")
+                {
+                    MessageBox.Show("Debe ingresar correo electrónico");
+                    txtEmail.Focus();
+                }
+                if (txtFijo.Text == "")
+                {
+                    MessageBox.Show("Debe ingresar telefono fijo");
+                    txtFijo.Focus();
+                }
+                if (txtMovil.Text == "")
+                {
+                    MessageBox.Show("Debe ingresar celular");
+                    txtMovil.Focus();
+                }
+
+                else
+                {
+                    string q = "insert into Cliente values('" + txtNumero.Text + "','" + cboTipo.SelectedValue.ToString() + "','" + txtRazon.Text + "','" + txtDireccion.Text + "','" + txtEmail.Text + "','" + txtMovil.Text + "','" + txtFijo.Text + "')";
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand(q, cn);
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
+                    MessageBox.Show("Cliente Insertado");
+                    this.Hide();
+                    Clientes cl = new Clientes();
+                    cl.Closed += (s, args) => this.Close();
+                    cl.Show();
+                }
+
+                
+            }
+            catch(Exception ex){
+                MessageBox.Show("Error al insertar Cliente");
+            }
+           
+        }
+
+        private void txtFijo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMovil_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }

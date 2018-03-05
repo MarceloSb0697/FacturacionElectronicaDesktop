@@ -17,7 +17,7 @@ namespace FacturacionElectronicaDesktop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new InsertarFactura());
+            Application.Run(new Login());
         }
     }
 }

@@ -28,6 +28,7 @@ namespace FacturacionElectronicaDesktop
         }
     
         public virtual DbSet<Cliente> Cliente { get; set; }
+        public virtual DbSet<CuentaBancaria> CuentaBancaria { get; set; }
         public virtual DbSet<DetalleFactura> DetalleFactura { get; set; }
         public virtual DbSet<Documento> Documento { get; set; }
         public virtual DbSet<FacturacionElectronica> FacturacionElectronica { get; set; }
@@ -38,6 +39,7 @@ namespace FacturacionElectronicaDesktop
         public virtual DbSet<Tipo_NotaCredito> Tipo_NotaCredito { get; set; }
         public virtual DbSet<Tipo_NotaDebito> Tipo_NotaDebito { get; set; }
         public virtual DbSet<Tipo_Operacion> Tipo_Operacion { get; set; }
+        public virtual DbSet<TipoCuentaBancaria> TipoCuentaBancaria { get; set; }
         public virtual DbSet<Unidad_Medida> Unidad_Medida { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
     
@@ -103,44 +105,15 @@ namespace FacturacionElectronicaDesktop
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarProductos", cod_tipoParameter, des_proParameter, cod_monParameter, valParameter, preParameter, cod_proParameter);
         }
     
-        public virtual int InsertarDetalle(Nullable<int> num_fac, Nullable<int> cod_pro, Nullable<int> cantidad, Nullable<int> tipo_igv, Nullable<decimal> valor, Nullable<decimal> subtotal, Nullable<decimal> tot_pro)
-        {
-            var num_facParameter = num_fac.HasValue ?
-                new ObjectParameter("num_fac", num_fac) :
-                new ObjectParameter("num_fac", typeof(int));
-    
-            var cod_proParameter = cod_pro.HasValue ?
-                new ObjectParameter("cod_pro", cod_pro) :
-                new ObjectParameter("cod_pro", typeof(int));
-    
-            var cantidadParameter = cantidad.HasValue ?
-                new ObjectParameter("cantidad", cantidad) :
-                new ObjectParameter("cantidad", typeof(int));
-    
-            var tipo_igvParameter = tipo_igv.HasValue ?
-                new ObjectParameter("tipo_igv", tipo_igv) :
-                new ObjectParameter("tipo_igv", typeof(int));
-    
-            var valorParameter = valor.HasValue ?
-                new ObjectParameter("valor", valor) :
-                new ObjectParameter("valor", typeof(decimal));
-    
-            var subtotalParameter = subtotal.HasValue ?
-                new ObjectParameter("subtotal", subtotal) :
-                new ObjectParameter("subtotal", typeof(decimal));
-    
-            var tot_proParameter = tot_pro.HasValue ?
-                new ObjectParameter("tot_pro", tot_pro) :
-                new ObjectParameter("tot_pro", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarDetalle", num_facParameter, cod_proParameter, cantidadParameter, tipo_igvParameter, valorParameter, subtotalParameter, tot_proParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<decimal>> InsertarFactura(string num_ruc, string cod_doc, string num_serie, string num_cor, Nullable<System.DateTime> fec_em, Nullable<int> cod_op, string cod_mon, Nullable<decimal> tipo, Nullable<System.DateTime> fec_ven, Nullable<int> estado, Nullable<decimal> exo, Nullable<decimal> inf, Nullable<decimal> gra, Nullable<decimal> igv, Nullable<decimal> gratuita, Nullable<decimal> tot_bol)
+        public virtual ObjectResult<Nullable<decimal>> InsertarBoleta(string num_ruc, string razon_social, string cod_doc, string num_serie, string num_cor, Nullable<System.DateTime> fec_em, Nullable<int> cod_op, string cod_mon, Nullable<decimal> tipo, Nullable<System.DateTime> fec_ven, Nullable<int> estado, Nullable<decimal> exo, Nullable<decimal> inf, Nullable<decimal> gra, Nullable<decimal> igv, Nullable<decimal> gratuita, Nullable<decimal> tot_bol)
         {
             var num_rucParameter = num_ruc != null ?
                 new ObjectParameter("num_ruc", num_ruc) :
                 new ObjectParameter("num_ruc", typeof(string));
+    
+            var razon_socialParameter = razon_social != null ?
+                new ObjectParameter("razon_social", razon_social) :
+                new ObjectParameter("razon_social", typeof(string));
     
             var cod_docParameter = cod_doc != null ?
                 new ObjectParameter("cod_doc", cod_doc) :
@@ -202,7 +175,267 @@ namespace FacturacionElectronicaDesktop
                 new ObjectParameter("tot_bol", tot_bol) :
                 new ObjectParameter("tot_bol", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("InsertarFactura", num_rucParameter, cod_docParameter, num_serieParameter, num_corParameter, fec_emParameter, cod_opParameter, cod_monParameter, tipoParameter, fec_venParameter, estadoParameter, exoParameter, infParameter, graParameter, igvParameter, gratuitaParameter, tot_bolParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("InsertarBoleta", num_rucParameter, razon_socialParameter, cod_docParameter, num_serieParameter, num_corParameter, fec_emParameter, cod_opParameter, cod_monParameter, tipoParameter, fec_venParameter, estadoParameter, exoParameter, infParameter, graParameter, igvParameter, gratuitaParameter, tot_bolParameter);
+        }
+    
+        public virtual int InsertarDetalle(Nullable<int> num_fac, Nullable<int> cod_pro, Nullable<int> cantidad, Nullable<int> tipo_igv, Nullable<decimal> valor, Nullable<decimal> subtotal, Nullable<decimal> tot_pro)
+        {
+            var num_facParameter = num_fac.HasValue ?
+                new ObjectParameter("num_fac", num_fac) :
+                new ObjectParameter("num_fac", typeof(int));
+    
+            var cod_proParameter = cod_pro.HasValue ?
+                new ObjectParameter("cod_pro", cod_pro) :
+                new ObjectParameter("cod_pro", typeof(int));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("cantidad", cantidad) :
+                new ObjectParameter("cantidad", typeof(int));
+    
+            var tipo_igvParameter = tipo_igv.HasValue ?
+                new ObjectParameter("tipo_igv", tipo_igv) :
+                new ObjectParameter("tipo_igv", typeof(int));
+    
+            var valorParameter = valor.HasValue ?
+                new ObjectParameter("valor", valor) :
+                new ObjectParameter("valor", typeof(decimal));
+    
+            var subtotalParameter = subtotal.HasValue ?
+                new ObjectParameter("subtotal", subtotal) :
+                new ObjectParameter("subtotal", typeof(decimal));
+    
+            var tot_proParameter = tot_pro.HasValue ?
+                new ObjectParameter("tot_pro", tot_pro) :
+                new ObjectParameter("tot_pro", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarDetalle", num_facParameter, cod_proParameter, cantidadParameter, tipo_igvParameter, valorParameter, subtotalParameter, tot_proParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> InsertarFactura(string num_ruc, string razon_social, string cod_doc, string num_serie, string num_cor, Nullable<System.DateTime> fec_em, Nullable<int> cod_op, string cod_mon, Nullable<decimal> tipo, Nullable<System.DateTime> fec_ven, Nullable<int> estado, Nullable<decimal> exo, Nullable<decimal> inf, Nullable<decimal> gra, Nullable<decimal> igv, Nullable<decimal> gratuita, Nullable<decimal> tot_bol)
+        {
+            var num_rucParameter = num_ruc != null ?
+                new ObjectParameter("num_ruc", num_ruc) :
+                new ObjectParameter("num_ruc", typeof(string));
+    
+            var razon_socialParameter = razon_social != null ?
+                new ObjectParameter("razon_social", razon_social) :
+                new ObjectParameter("razon_social", typeof(string));
+    
+            var cod_docParameter = cod_doc != null ?
+                new ObjectParameter("cod_doc", cod_doc) :
+                new ObjectParameter("cod_doc", typeof(string));
+    
+            var num_serieParameter = num_serie != null ?
+                new ObjectParameter("num_serie", num_serie) :
+                new ObjectParameter("num_serie", typeof(string));
+    
+            var num_corParameter = num_cor != null ?
+                new ObjectParameter("num_cor", num_cor) :
+                new ObjectParameter("num_cor", typeof(string));
+    
+            var fec_emParameter = fec_em.HasValue ?
+                new ObjectParameter("fec_em", fec_em) :
+                new ObjectParameter("fec_em", typeof(System.DateTime));
+    
+            var cod_opParameter = cod_op.HasValue ?
+                new ObjectParameter("cod_op", cod_op) :
+                new ObjectParameter("cod_op", typeof(int));
+    
+            var cod_monParameter = cod_mon != null ?
+                new ObjectParameter("cod_mon", cod_mon) :
+                new ObjectParameter("cod_mon", typeof(string));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(decimal));
+    
+            var fec_venParameter = fec_ven.HasValue ?
+                new ObjectParameter("fec_ven", fec_ven) :
+                new ObjectParameter("fec_ven", typeof(System.DateTime));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(int));
+    
+            var exoParameter = exo.HasValue ?
+                new ObjectParameter("exo", exo) :
+                new ObjectParameter("exo", typeof(decimal));
+    
+            var infParameter = inf.HasValue ?
+                new ObjectParameter("inf", inf) :
+                new ObjectParameter("inf", typeof(decimal));
+    
+            var graParameter = gra.HasValue ?
+                new ObjectParameter("gra", gra) :
+                new ObjectParameter("gra", typeof(decimal));
+    
+            var igvParameter = igv.HasValue ?
+                new ObjectParameter("igv", igv) :
+                new ObjectParameter("igv", typeof(decimal));
+    
+            var gratuitaParameter = gratuita.HasValue ?
+                new ObjectParameter("gratuita", gratuita) :
+                new ObjectParameter("gratuita", typeof(decimal));
+    
+            var tot_bolParameter = tot_bol.HasValue ?
+                new ObjectParameter("tot_bol", tot_bol) :
+                new ObjectParameter("tot_bol", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("InsertarFactura", num_rucParameter, razon_socialParameter, cod_docParameter, num_serieParameter, num_corParameter, fec_emParameter, cod_opParameter, cod_monParameter, tipoParameter, fec_venParameter, estadoParameter, exoParameter, infParameter, graParameter, igvParameter, gratuitaParameter, tot_bolParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> InsertarNotaCredito(string num_ruc, string razon_social, string cod_doc, string num_serie, string num_cor, Nullable<System.DateTime> fec_em, Nullable<int> cod_op, string cod_mon, Nullable<decimal> tipo, Nullable<System.DateTime> fec_ven, Nullable<int> estado, Nullable<decimal> exo, Nullable<decimal> inf, Nullable<decimal> gra, Nullable<decimal> igv, Nullable<decimal> gratuita, Nullable<decimal> tot_bol, string codcre)
+        {
+            var num_rucParameter = num_ruc != null ?
+                new ObjectParameter("num_ruc", num_ruc) :
+                new ObjectParameter("num_ruc", typeof(string));
+    
+            var razon_socialParameter = razon_social != null ?
+                new ObjectParameter("razon_social", razon_social) :
+                new ObjectParameter("razon_social", typeof(string));
+    
+            var cod_docParameter = cod_doc != null ?
+                new ObjectParameter("cod_doc", cod_doc) :
+                new ObjectParameter("cod_doc", typeof(string));
+    
+            var num_serieParameter = num_serie != null ?
+                new ObjectParameter("num_serie", num_serie) :
+                new ObjectParameter("num_serie", typeof(string));
+    
+            var num_corParameter = num_cor != null ?
+                new ObjectParameter("num_cor", num_cor) :
+                new ObjectParameter("num_cor", typeof(string));
+    
+            var fec_emParameter = fec_em.HasValue ?
+                new ObjectParameter("fec_em", fec_em) :
+                new ObjectParameter("fec_em", typeof(System.DateTime));
+    
+            var cod_opParameter = cod_op.HasValue ?
+                new ObjectParameter("cod_op", cod_op) :
+                new ObjectParameter("cod_op", typeof(int));
+    
+            var cod_monParameter = cod_mon != null ?
+                new ObjectParameter("cod_mon", cod_mon) :
+                new ObjectParameter("cod_mon", typeof(string));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(decimal));
+    
+            var fec_venParameter = fec_ven.HasValue ?
+                new ObjectParameter("fec_ven", fec_ven) :
+                new ObjectParameter("fec_ven", typeof(System.DateTime));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(int));
+    
+            var exoParameter = exo.HasValue ?
+                new ObjectParameter("exo", exo) :
+                new ObjectParameter("exo", typeof(decimal));
+    
+            var infParameter = inf.HasValue ?
+                new ObjectParameter("inf", inf) :
+                new ObjectParameter("inf", typeof(decimal));
+    
+            var graParameter = gra.HasValue ?
+                new ObjectParameter("gra", gra) :
+                new ObjectParameter("gra", typeof(decimal));
+    
+            var igvParameter = igv.HasValue ?
+                new ObjectParameter("igv", igv) :
+                new ObjectParameter("igv", typeof(decimal));
+    
+            var gratuitaParameter = gratuita.HasValue ?
+                new ObjectParameter("gratuita", gratuita) :
+                new ObjectParameter("gratuita", typeof(decimal));
+    
+            var tot_bolParameter = tot_bol.HasValue ?
+                new ObjectParameter("tot_bol", tot_bol) :
+                new ObjectParameter("tot_bol", typeof(decimal));
+    
+            var codcreParameter = codcre != null ?
+                new ObjectParameter("codcre", codcre) :
+                new ObjectParameter("codcre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("InsertarNotaCredito", num_rucParameter, razon_socialParameter, cod_docParameter, num_serieParameter, num_corParameter, fec_emParameter, cod_opParameter, cod_monParameter, tipoParameter, fec_venParameter, estadoParameter, exoParameter, infParameter, graParameter, igvParameter, gratuitaParameter, tot_bolParameter, codcreParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> InsertarNotaDebito(string num_ruc, string razon_social, string cod_doc, string num_serie, string num_cor, Nullable<System.DateTime> fec_em, Nullable<int> cod_op, string cod_mon, Nullable<decimal> tipo, Nullable<System.DateTime> fec_ven, Nullable<int> estado, Nullable<decimal> exo, Nullable<decimal> inf, Nullable<decimal> gra, Nullable<decimal> igv, Nullable<decimal> gratuita, Nullable<decimal> tot_bol, string codde)
+        {
+            var num_rucParameter = num_ruc != null ?
+                new ObjectParameter("num_ruc", num_ruc) :
+                new ObjectParameter("num_ruc", typeof(string));
+    
+            var razon_socialParameter = razon_social != null ?
+                new ObjectParameter("razon_social", razon_social) :
+                new ObjectParameter("razon_social", typeof(string));
+    
+            var cod_docParameter = cod_doc != null ?
+                new ObjectParameter("cod_doc", cod_doc) :
+                new ObjectParameter("cod_doc", typeof(string));
+    
+            var num_serieParameter = num_serie != null ?
+                new ObjectParameter("num_serie", num_serie) :
+                new ObjectParameter("num_serie", typeof(string));
+    
+            var num_corParameter = num_cor != null ?
+                new ObjectParameter("num_cor", num_cor) :
+                new ObjectParameter("num_cor", typeof(string));
+    
+            var fec_emParameter = fec_em.HasValue ?
+                new ObjectParameter("fec_em", fec_em) :
+                new ObjectParameter("fec_em", typeof(System.DateTime));
+    
+            var cod_opParameter = cod_op.HasValue ?
+                new ObjectParameter("cod_op", cod_op) :
+                new ObjectParameter("cod_op", typeof(int));
+    
+            var cod_monParameter = cod_mon != null ?
+                new ObjectParameter("cod_mon", cod_mon) :
+                new ObjectParameter("cod_mon", typeof(string));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(decimal));
+    
+            var fec_venParameter = fec_ven.HasValue ?
+                new ObjectParameter("fec_ven", fec_ven) :
+                new ObjectParameter("fec_ven", typeof(System.DateTime));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(int));
+    
+            var exoParameter = exo.HasValue ?
+                new ObjectParameter("exo", exo) :
+                new ObjectParameter("exo", typeof(decimal));
+    
+            var infParameter = inf.HasValue ?
+                new ObjectParameter("inf", inf) :
+                new ObjectParameter("inf", typeof(decimal));
+    
+            var graParameter = gra.HasValue ?
+                new ObjectParameter("gra", gra) :
+                new ObjectParameter("gra", typeof(decimal));
+    
+            var igvParameter = igv.HasValue ?
+                new ObjectParameter("igv", igv) :
+                new ObjectParameter("igv", typeof(decimal));
+    
+            var gratuitaParameter = gratuita.HasValue ?
+                new ObjectParameter("gratuita", gratuita) :
+                new ObjectParameter("gratuita", typeof(decimal));
+    
+            var tot_bolParameter = tot_bol.HasValue ?
+                new ObjectParameter("tot_bol", tot_bol) :
+                new ObjectParameter("tot_bol", typeof(decimal));
+    
+            var coddeParameter = codde != null ?
+                new ObjectParameter("codde", codde) :
+                new ObjectParameter("codde", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("InsertarNotaDebito", num_rucParameter, razon_socialParameter, cod_docParameter, num_serieParameter, num_corParameter, fec_emParameter, cod_opParameter, cod_monParameter, tipoParameter, fec_venParameter, estadoParameter, exoParameter, infParameter, graParameter, igvParameter, gratuitaParameter, tot_bolParameter, coddeParameter);
         }
     
         public virtual ObjectResult<listarReporte_Result> listarReporte(Nullable<int> num_fac)

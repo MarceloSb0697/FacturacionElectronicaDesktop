@@ -50,5 +50,43 @@ namespace CapaDatos
 
             return listadoDocumento;
         }
+
+        public List<TipoDocumentoElectronico> ListadoNota()
+        {
+            List<TipoDocumentoElectronico> listadoDocumento = new List<TipoDocumentoElectronico>();
+            SqlCommand cmd = new SqlCommand("select * from Tipo_DocumentoElectronico where codigo_documentoElectronico = '07'", cn);
+            cn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                TipoDocumentoElectronico td = new TipoDocumentoElectronico();
+                td.CodigoDocumentElectronico = dr["codigo_documentoElectronico"].ToString();
+                td.DescripcionDocumentoElectronico = dr["descripcion_documento"].ToString();
+                listadoDocumento.Add(td);
+            }
+            dr.Close();
+            cn.Close();
+
+            return listadoDocumento;
+        }
+
+        public List<TipoDocumentoElectronico> ListadoDebito()
+        {
+            List<TipoDocumentoElectronico> listadoDocumento = new List<TipoDocumentoElectronico>();
+            SqlCommand cmd = new SqlCommand("select * from Tipo_DocumentoElectronico where codigo_documentoElectronico = '08'", cn);
+            cn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                TipoDocumentoElectronico td = new TipoDocumentoElectronico();
+                td.CodigoDocumentElectronico = dr["codigo_documentoElectronico"].ToString();
+                td.DescripcionDocumentoElectronico = dr["descripcion_documento"].ToString();
+                listadoDocumento.Add(td);
+            }
+            dr.Close();
+            cn.Close();
+
+            return listadoDocumento;
+        }
     }
 }

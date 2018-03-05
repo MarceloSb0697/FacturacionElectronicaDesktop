@@ -57,6 +57,7 @@
             this.dgClientes.ReadOnly = true;
             this.dgClientes.Size = new System.Drawing.Size(737, 333);
             this.dgClientes.TabIndex = 5;
+            this.dgClientes.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgClientes_DataBindingComplete);
             // 
             // btnClientes
             // 
@@ -82,6 +83,7 @@
             this.Controls.Add(this.dgClientes);
             this.Controls.Add(this.btnClientes);
             this.Name = "Clientes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CLIENTES";
             this.Load += new System.EventHandler(this.Clientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgClientes)).EndInit();

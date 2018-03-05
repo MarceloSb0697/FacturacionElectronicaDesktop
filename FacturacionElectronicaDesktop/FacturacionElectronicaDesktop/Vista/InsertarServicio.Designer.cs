@@ -147,6 +147,7 @@
             this.txtPrecioUnitario.Name = "txtPrecioUnitario";
             this.txtPrecioUnitario.Size = new System.Drawing.Size(180, 22);
             this.txtPrecioUnitario.TabIndex = 15;
+            this.txtPrecioUnitario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioUnitario_KeyPress);
             // 
             // txtValorUnitario
             // 
@@ -155,6 +156,7 @@
             this.txtValorUnitario.Name = "txtValorUnitario";
             this.txtValorUnitario.Size = new System.Drawing.Size(175, 22);
             this.txtValorUnitario.TabIndex = 16;
+            this.txtValorUnitario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValorUnitario_KeyPress);
             // 
             // btnInsertar
             // 
@@ -204,6 +206,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "InsertarServicio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NUEVO SERVICIO";
             this.Load += new System.EventHandler(this.InsertarServicio_Load);
             this.ResumeLayout(false);

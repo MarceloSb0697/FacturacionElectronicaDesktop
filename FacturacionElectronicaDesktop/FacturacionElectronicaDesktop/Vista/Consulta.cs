@@ -47,6 +47,8 @@ namespace FacturacionElectronicaDesktop.Vista
                 dtHasta.Enabled = false;
                 dgConsulta.DataSource = null;
                 dgConsulta.Rows.Clear();
+                btnImprimir.Enabled = false;
+                btnExportar.Enabled = false;
             }
             if (cboSeleccion.SelectedIndex == 2)
             {
@@ -55,6 +57,8 @@ namespace FacturacionElectronicaDesktop.Vista
                 dtHasta.Enabled = false;
                 dgConsulta.DataSource = null;
                 dgConsulta.Rows.Clear();
+                btnImprimir.Enabled = false;
+                btnExportar.Enabled = false;
             }
             if (cboSeleccion.SelectedIndex == 3)
             {
@@ -63,6 +67,8 @@ namespace FacturacionElectronicaDesktop.Vista
                 dtHasta.Enabled = false;
                 dgConsulta.DataSource = null;
                 dgConsulta.Rows.Clear();
+                btnImprimir.Enabled = false;
+                btnExportar.Enabled = false;
             }
             if (cboSeleccion.SelectedIndex == 4)
             {
@@ -71,13 +77,18 @@ namespace FacturacionElectronicaDesktop.Vista
                 dtHasta.Enabled = false;
                 dgConsulta.DataSource = null;
                 dgConsulta.Rows.Clear();
+                btnImprimir.Enabled = false;
+                btnExportar.Enabled = false;
             }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+          
             if(cboSeleccion.SelectedIndex == 0)
             {
+                btnImprimir.Enabled = false;
+                btnExportar.Enabled = false;
                 btnBuscar.Enabled = true;
                 dtDesde.Enabled = true;
                 dtHasta.Enabled = true;
@@ -92,6 +103,8 @@ namespace FacturacionElectronicaDesktop.Vista
                     
                     dgConsulta.DataSource = dt;
                     CabeceraReporte();
+                    btnExportar.Enabled = true;
+                    btnImprimir.Enabled = true;
 
                 }
                 else
@@ -101,6 +114,7 @@ namespace FacturacionElectronicaDesktop.Vista
             }
             if (cboSeleccion.SelectedIndex == 1)
             {
+            
                 btnBuscar.Enabled = true;
                 dtDesde.Enabled = false;
                 dtHasta.Enabled = false;
@@ -115,7 +129,8 @@ namespace FacturacionElectronicaDesktop.Vista
                  
                     dgConsulta.DataSource = dt;
                     CabeceraReporte();
-
+                    btnExportar.Enabled = true;
+                    btnImprimir.Enabled = true;
 
                 }
                 else
@@ -125,6 +140,7 @@ namespace FacturacionElectronicaDesktop.Vista
             }
             if (cboSeleccion.SelectedIndex == 2)
             {
+            
                 btnBuscar.Enabled = true;
                 dtDesde.Enabled = false;
                 dtHasta.Enabled = false;
@@ -139,11 +155,63 @@ namespace FacturacionElectronicaDesktop.Vista
                     
                     dgConsulta.DataSource = dt;
                     CabeceraReporte();
-
+                    btnExportar.Enabled = true;
+                    btnImprimir.Enabled = true;
                 }
                 else
                 {
                     MessageBox.Show("No se encontraron boletas");
+                }
+            }
+            if (cboSeleccion.SelectedIndex == 3)
+            {
+           
+                btnBuscar.Enabled = true;
+                dtDesde.Enabled = false;
+                dtHasta.Enabled = false;
+                DateTime fecha1 = DateTime.Parse(dtDesde.Text);
+                DateTime fecha2 = DateTime.Parse(dtHasta.Text);
+                SqlCommand cmd = new SqlCommand(" select f.fecha_emision,f.codigo_documentoElectronico,f.numero_serie,f.numero_correlativo, f.numero_ruc, c.razon_social, m.descripcion_moneda, f.total_boleta, f.estado from FacturacionElectronica f inner join Moneda m on f.codigo_moneda = m.codigo_moneda inner join Cliente c on f.numero_ruc = c.numero_ruc where f.codigo_documentoElectronico = '07'", cn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+
+                    dgConsulta.DataSource = dt;
+                    CabeceraReporte();
+                    btnExportar.Enabled = true;
+                    btnImprimir.Enabled = true;
+
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron notas de credito");
+                }
+            }
+            else
+            {
+
+                btnBuscar.Enabled = true;
+                dtDesde.Enabled = false;
+                dtHasta.Enabled = false;
+                DateTime fecha1 = DateTime.Parse(dtDesde.Text);
+                DateTime fecha2 = DateTime.Parse(dtHasta.Text);
+                SqlCommand cmd = new SqlCommand(" select f.fecha_emision,f.codigo_documentoElectronico,f.numero_serie,f.numero_correlativo, f.numero_ruc, c.razon_social, m.descripcion_moneda, f.total_boleta, f.estado from FacturacionElectronica f inner join Moneda m on f.codigo_moneda = m.codigo_moneda inner join Cliente c on f.numero_ruc = c.numero_ruc where f.codigo_documentoElectronico = '08'", cn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+
+                    dgConsulta.DataSource = dt;
+                    CabeceraReporte();
+                    btnExportar.Enabled = true;
+                    btnImprimir.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron notas de debito");
                 }
             }
         }
@@ -200,6 +268,18 @@ namespace FacturacionElectronicaDesktop.Vista
            
 
 
+        }
+
+        private void dgConsulta_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgConsulta.ClearSelection();
+        }
+
+        private void Consulta_Load(object sender, EventArgs e)
+        {
+            btnImprimir.Enabled = false;
+            btnExportar.Enabled = false;
+            
         }
     }
 }

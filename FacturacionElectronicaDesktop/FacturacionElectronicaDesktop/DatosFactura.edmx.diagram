@@ -4,29 +4,33 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2299bc490896433faf2f66a4658946a5" Name="Diagram1">
-        <EntityTypeShape EntityType="FactronLCTModel.Cliente" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="FactronLCTModel.DetalleFactura" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FactronLCTModel.Documento" Width="1.5" PointX="1.5" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FactronLCTModel.FacturacionElectronica" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FactronLCTModel.Moneda" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FactronLCTModel.Productos" Width="1.5" PointX="6" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FactronLCTModel.Tipo_DocumentoElectronico" Width="1.5" PointX="0.75" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FactronLCTModel.Tipo_igv" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FactronLCTModel.Tipo_NotaCredito" Width="1.5" PointX="0.75" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FactronLCTModel.Tipo_NotaDebito" Width="1.5" PointX="0.75" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FactronLCTModel.Tipo_Operacion" Width="1.5" PointX="0.75" PointY="23.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FactronLCTModel.Unidad_Medida" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FactronLCTModel.Usuarios" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
+      <Diagram DiagramId="b38c5b8823374e4381c06c7ff72da69f" Name="Diagram1">
+        <EntityTypeShape EntityType="FactronLCTModel.Cliente" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FactronLCTModel.CuentaBancaria" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FactronLCTModel.DetalleFactura" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FactronLCTModel.Documento" Width="1.5" PointX="1.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FactronLCTModel.FacturacionElectronica" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FactronLCTModel.Moneda" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FactronLCTModel.Productos" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FactronLCTModel.Tipo_DocumentoElectronico" Width="1.5" PointX="3.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FactronLCTModel.Tipo_igv" Width="1.5" PointX="5.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FactronLCTModel.Tipo_NotaCredito" Width="1.5" PointX="3.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FactronLCTModel.Tipo_NotaDebito" Width="1.5" PointX="3.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="FactronLCTModel.Tipo_Operacion" Width="1.5" PointX="3.75" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FactronLCTModel.TipoCuentaBancaria" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="FactronLCTModel.Unidad_Medida" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FactronLCTModel.Usuarios" Width="1.5" PointX="7.75" PointY="2.25" IsExpanded="true" />
         <AssociationConnector Association="FactronLCTModel.FK__Cliente__codigo___1BFD2C07" ManuallyRouted="false" />
-        <AssociationConnector Association="FactronLCTModel.FK__Facturaci__numer__286302EC" ManuallyRouted="false" />
-        <AssociationConnector Association="FactronLCTModel.FK__DetalleFa__codig__31EC6D26" ManuallyRouted="false" />
-        <AssociationConnector Association="FactronLCTModel.FK__DetalleFa__num_f__30F848ED" ManuallyRouted="false" />
-        <AssociationConnector Association="FactronLCTModel.FK__Facturaci__codig__29572725" ManuallyRouted="false" />
-        <AssociationConnector Association="FactronLCTModel.FK__Facturaci__codig__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="FactronLCTModel.FK__Facturaci__numer__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="FactronLCTModel.FK__CuentaBan__codig__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="FactronLCTModel.FK__CuentaBan__id_ti__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="FactronLCTModel.FK__DetalleFa__codig__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="FactronLCTModel.FK__DetalleFa__num_f__32E0915F" ManuallyRouted="false" />
         <AssociationConnector Association="FactronLCTModel.FK__Facturaci__codig__2B3F6F97" ManuallyRouted="false" />
         <AssociationConnector Association="FactronLCTModel.FK__Facturaci__codig__2C3393D0" ManuallyRouted="false" />
         <AssociationConnector Association="FactronLCTModel.FK__Facturaci__codig__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="FactronLCTModel.FK__Facturaci__codig__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="FactronLCTModel.FK__Facturaci__codig__2F10007B" ManuallyRouted="false" />
         <AssociationConnector Association="FactronLCTModel.FK__Productos__codig__1FCDBCEB" ManuallyRouted="false" />
         <AssociationConnector Association="FactronLCTModel.FK__Productos__codig__1ED998B2" ManuallyRouted="false" />
       </Diagram>

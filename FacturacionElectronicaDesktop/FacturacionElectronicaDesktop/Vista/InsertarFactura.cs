@@ -4,11 +4,15 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaDatos;
+using Newtonsoft.Json;
 
 namespace FacturacionElectronicaDesktop.Vista
 {
@@ -72,12 +76,12 @@ namespace FacturacionElectronicaDesktop.Vista
             cboProducto.DataSource = dp.ListadoTablaProductos();
             cboProducto.ValueMember = "CodigoProducto";
             cboProducto.DisplayMember = "DescripcionProducto";
-            cboProducto.Text = "Seleccionar Producto";
+
             
             cboIGV.DataSource = di.ListadoIGV();
             cboIGV.ValueMember = "CodigoTipoIGV";
             cboIGV.DisplayMember = "Tipo_IGV";
-            cboIGV.Text = "Seleccionar IGV";
+
 
             cboDocumento.DataSource = dd.ListadoTipoDocumento();
             cboDocumento.ValueMember = "CodigoDocumentElectronico";
@@ -134,9 +138,6 @@ namespace FacturacionElectronicaDesktop.Vista
         {
             try
             {
-                
-
-
                 if (cboProducto.SelectedIndex == -1)
                 {
                     MessageBox.Show("Debe seleccionar un producto");
@@ -301,6 +302,7 @@ namespace FacturacionElectronicaDesktop.Vista
                 MessageBox.Show("No se pudo realizar el calculo");
                 cboIGV.SelectedIndex = -1;
                 cboProducto.SelectedIndex = -1;
+                txtValorUnitario.Text = "";
                 
             }
 
@@ -316,7 +318,6 @@ namespace FacturacionElectronicaDesktop.Vista
             txtTotal.Text = dgDetalle.CurrentRow.Cells[7].Value.ToString();
             btnEliminar.Enabled = true;
 
-          
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -485,6 +486,8 @@ namespace FacturacionElectronicaDesktop.Vista
                 txtTotal.Text = "";
 
 
+
+
             } catch (Exception ex)
             {
                 MessageBox.Show("No se ha seleccionado un registro");
@@ -525,27 +528,12 @@ namespace FacturacionElectronicaDesktop.Vista
                 }
 
                 reader.Close();
+                DataSet ds = new DataSet();
 
                 for (int i = 0; i < dgDetalle.Rows.Count; i++)
                 {
-                    SqlConnection cn1 = new SqlConnection("Data Source=.;Initial Catalog=FactronLCT;Integrated Security=True");
-                    SqlCommand cmd1 = new SqlCommand("InsertarDetalle", cn);
-
-                    cn1.Open();
-                    cmd1.CommandType = CommandType.StoredProcedure;
-                    cmd1.Parameters.AddWithValue("@num_fac", numerofac);
-                    cmd1.Parameters.AddWithValue("@cod_pro", dgDetalle.CurrentRow.Cells[0].Value.ToString());
-                    cmd1.Parameters.AddWithValue("@cantidad", dgDetalle.CurrentRow.Cells[2].Value.ToString());
-                    cmd1.Parameters.AddWithValue("@tipo_igv", dgDetalle.CurrentRow.Cells[3].Value.ToString());
-                    cmd1.Parameters.AddWithValue("@valor", dgDetalle.CurrentRow.Cells[5].Value.ToString());
-                    cmd1.Parameters.AddWithValue("@subtotal", dgDetalle.CurrentRow.Cells[6].Value.ToString());
-                    cmd1.Parameters.AddWithValue("@tot_pro", dgDetalle.CurrentRow.Cells[7].Value.ToString());
-
-
-                    SqlDataReader reader1 = cmd1.ExecuteReader();
-                    reader1.Close();
-                    cn1.Close();
-
+                   SqlDataAdapter da = new SqlDataAdapter("insert into DetalleFactura values('" + numerofac+ "','" + dgDetalle.Rows[i].Cells[0].Value + "','" + dgDetalle.Rows[i].Cells[2].Value + "','" + dgDetalle.Rows[i].Cells[3].Value + "','" + dgDetalle.Rows[i].Cells[5].Value + "','" + dgDetalle.Rows[i].Cells[6].Value + "','" + dgDetalle.Rows[i].Cells[7].Value + "')", cn);
+                   da.Fill(ds);
                 }
 
                 DialogResult dialog = MessageBox.Show("Factura Insertada");
@@ -586,6 +574,94 @@ namespace FacturacionElectronicaDesktop.Vista
                 }
 
             }
+        }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnConsultarValor_Click(object sender, EventArgs e)
+        {
+            try {
+
+                HttpClient cliente = new HttpClient();
+                cliente.BaseAddress = new Uri("http://www.sunat.gob.pe/");
+                HttpResponseMessage rpta = cliente.GetAsync("cl-at-ittipcam/tcS01Alias").Result;
+                if (rpta != null && rpta.IsSuccessStatusCode)
+                {
+                    string contenido = "";
+                    using (MemoryStream ms = (MemoryStream)
+                    rpta.Content.ReadAsStreamAsync().Result)
+                    {
+                        byte[] buffer = ms.ToArray();
+                        contenido = Encoding.UTF8.GetString(buffer);
+                        contenido = contenido.ToLower();
+                    }
+                    if (contenido.Length > 0)
+                    {
+                        File.WriteAllText("Sunat.txt", contenido);
+                        int posInicioT1 = contenido.IndexOf("<table");
+                        int posFinT1 = contenido.IndexOf("</table");
+                        if (posInicioT1 > -1 && posFinT1 > -1)
+                        {
+                            int posInicioT2 = contenido.IndexOf("<table", posInicioT1 + 1);
+                            int posFinT2 = contenido.IndexOf("</table", posFinT1 + 1);
+                            string tabla = contenido.Substring(posInicioT2, posFinT2 - posInicioT2 + 8);
+                            File.WriteAllText("Tabla.txt", tabla);
+                            posInicioT1 = 0;
+                            tabla = tabla.Replace("</strong>", "");
+                            List<string> valores = new List<string>();
+                            for (int i = 1; i < 4; i++)
+                            {
+                                posInicioT1 = tabla.LastIndexOf("</td");
+                                if (posInicioT1 > -1)
+                                {
+                                    tabla = tabla.Substring(0, posInicioT1).Trim();
+                                    posFinT1 = tabla.LastIndexOf(">");
+                                    if (posFinT1 > -1)
+                                    {
+                                        valores.Add(tabla.Substring(posFinT1 + 1,
+                                        tabla.Length - posFinT1 - 1).Trim());
+                                    }
+                                }
+                            }
+                            if (valores.Count > 0)
+                            {
+
+                                txtCambio.Text = valores[1];
+
+                            }
+                        }
+                    }
+                }
+
+            } catch(Exception ex)
+            {
+                MessageBox.Show("No se pudo obtener el valor unitario");
+            }
+            
+
+        }
+
+        private void dgDetalle_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgDetalle.ClearSelection();
         }
     }
 }

@@ -21,7 +21,10 @@ namespace FacturacionElectronicaDesktop
         }
     
         public int num_factura { get; set; }
+        public string ruc_emisor { get; set; }
+        public string razon_emisor { get; set; }
         public string numero_ruc { get; set; }
+        public string razon_social { get; set; }
         public string codigo_documentoElectronico { get; set; }
         public string numero_serie { get; set; }
         public string numero_correlativo { get; set; }

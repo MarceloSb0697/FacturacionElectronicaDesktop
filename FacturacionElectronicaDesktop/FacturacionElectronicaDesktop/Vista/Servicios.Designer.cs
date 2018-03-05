@@ -57,6 +57,7 @@
             this.dgServicios.ReadOnly = true;
             this.dgServicios.Size = new System.Drawing.Size(647, 333);
             this.dgServicios.TabIndex = 2;
+            this.dgServicios.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgServicios_DataBindingComplete);
             // 
             // btnSalir
             // 
@@ -82,6 +83,7 @@
             this.Controls.Add(this.dgServicios);
             this.Controls.Add(this.btnServicios);
             this.Name = "Servicios";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SERVICIOS";
             this.Load += new System.EventHandler(this.Servicios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).EndInit();

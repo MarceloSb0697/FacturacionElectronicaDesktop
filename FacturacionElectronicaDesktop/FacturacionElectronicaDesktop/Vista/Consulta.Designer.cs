@@ -52,6 +52,7 @@
             this.dgConsulta.Size = new System.Drawing.Size(899, 278);
             this.dgConsulta.TabIndex = 15;
             this.dgConsulta.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgConsulta_CellFormatting);
+            this.dgConsulta.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgConsulta_DataBindingComplete);
             // 
             // btnBuscar
             // 
@@ -177,7 +178,9 @@
             this.Controls.Add(this.dtDesde);
             this.Controls.Add(this.label1);
             this.Name = "Consulta";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CONSULTA DE COMPROBANTES ELECTRONICOS";
+            this.Load += new System.EventHandler(this.Consulta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgConsulta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ventas));
             this.btnFactura = new System.Windows.Forms.Button();
             this.btnBoleta = new System.Windows.Forms.Button();
             this.btnNotaCredito = new System.Windows.Forms.Button();
@@ -48,7 +49,12 @@
             this.lblTotalDebito = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.dgDetalleFacturacion = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnPDF = new System.Windows.Forms.Button();
+            this.btnXML = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgFacturacion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgDetalleFacturacion)).BeginInit();
             this.SuspendLayout();
             // 
             // btnFactura
@@ -88,6 +94,7 @@
             this.btnNotaCredito.TabIndex = 2;
             this.btnNotaCredito.Text = "EMITIR NOTA DE CREDITO";
             this.btnNotaCredito.UseVisualStyleBackColor = false;
+            this.btnNotaCredito.Click += new System.EventHandler(this.btnNotaCredito_Click);
             // 
             // btnNotaDebito
             // 
@@ -100,6 +107,7 @@
             this.btnNotaDebito.TabIndex = 3;
             this.btnNotaDebito.Text = "EMITIR NOTA DE DEBITO";
             this.btnNotaDebito.UseVisualStyleBackColor = false;
+            this.btnNotaDebito.Click += new System.EventHandler(this.btnNotaDebito_Click);
             // 
             // dtDesde
             // 
@@ -148,9 +156,12 @@
             this.dgFacturacion.Location = new System.Drawing.Point(221, 96);
             this.dgFacturacion.Name = "dgFacturacion";
             this.dgFacturacion.ReadOnly = true;
-            this.dgFacturacion.Size = new System.Drawing.Size(689, 283);
+            this.dgFacturacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgFacturacion.Size = new System.Drawing.Size(977, 283);
             this.dgFacturacion.TabIndex = 9;
+            this.dgFacturacion.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgFacturacion_CellClick);
             this.dgFacturacion.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgFacturacion_CellFormatting);
+            this.dgFacturacion.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgFacturacion_DataBindingComplete);
             // 
             // btnSalir
             // 
@@ -169,7 +180,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(218, 394);
+            this.label3.Location = new System.Drawing.Point(652, 492);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(372, 18);
             this.label3.TabIndex = 11;
@@ -179,7 +190,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(218, 425);
+            this.label4.Location = new System.Drawing.Point(652, 523);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(363, 18);
             this.label4.TabIndex = 12;
@@ -189,7 +200,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(218, 458);
+            this.label5.Location = new System.Drawing.Point(652, 556);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(443, 18);
             this.label5.TabIndex = 13;
@@ -199,7 +210,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(218, 488);
+            this.label6.Location = new System.Drawing.Point(652, 586);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(329, 18);
             this.label6.TabIndex = 14;
@@ -209,7 +220,7 @@
             // 
             this.lblFactura.AutoSize = true;
             this.lblFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFactura.Location = new System.Drawing.Point(712, 394);
+            this.lblFactura.Location = new System.Drawing.Point(1146, 492);
             this.lblFactura.Name = "lblFactura";
             this.lblFactura.Size = new System.Drawing.Size(52, 18);
             this.lblFactura.TabIndex = 15;
@@ -219,7 +230,7 @@
             // 
             this.lblBoleta.AutoSize = true;
             this.lblBoleta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBoleta.Location = new System.Drawing.Point(712, 425);
+            this.lblBoleta.Location = new System.Drawing.Point(1146, 523);
             this.lblBoleta.Name = "lblBoleta";
             this.lblBoleta.Size = new System.Drawing.Size(52, 18);
             this.lblBoleta.TabIndex = 16;
@@ -229,7 +240,7 @@
             // 
             this.lblTotalCredito.AutoSize = true;
             this.lblTotalCredito.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalCredito.Location = new System.Drawing.Point(712, 458);
+            this.lblTotalCredito.Location = new System.Drawing.Point(1146, 556);
             this.lblTotalCredito.Name = "lblTotalCredito";
             this.lblTotalCredito.Size = new System.Drawing.Size(52, 18);
             this.lblTotalCredito.TabIndex = 17;
@@ -239,7 +250,7 @@
             // 
             this.lblTotalDebito.AutoSize = true;
             this.lblTotalDebito.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalDebito.Location = new System.Drawing.Point(712, 488);
+            this.lblTotalDebito.Location = new System.Drawing.Point(1146, 586);
             this.lblTotalDebito.Name = "lblTotalDebito";
             this.lblTotalDebito.Size = new System.Drawing.Size(52, 18);
             this.lblTotalDebito.TabIndex = 18;
@@ -268,13 +279,56 @@
             this.btnVolver.UseVisualStyleBackColor = false;
             this.btnVolver.Click += new System.EventHandler(this.button1_Click);
             // 
+            // dgDetalleFacturacion
+            // 
+            this.dgDetalleFacturacion.AllowUserToAddRows = false;
+            this.dgDetalleFacturacion.AllowUserToDeleteRows = false;
+            this.dgDetalleFacturacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgDetalleFacturacion.Location = new System.Drawing.Point(12, 451);
+            this.dgDetalleFacturacion.Name = "dgDetalleFacturacion";
+            this.dgDetalleFacturacion.ReadOnly = true;
+            this.dgDetalleFacturacion.Size = new System.Drawing.Size(634, 173);
+            this.dgDetalleFacturacion.TabIndex = 20;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(230, 414);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(91, 18);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "DETALLES";
+            // 
+            // btnPDF
+            // 
+            this.btnPDF.Image = ((System.Drawing.Image)(resources.GetObject("btnPDF.Image")));
+            this.btnPDF.Location = new System.Drawing.Point(1220, 96);
+            this.btnPDF.Name = "btnPDF";
+            this.btnPDF.Size = new System.Drawing.Size(47, 46);
+            this.btnPDF.TabIndex = 22;
+            this.btnPDF.UseVisualStyleBackColor = true;
+            // 
+            // btnXML
+            // 
+            this.btnXML.Image = ((System.Drawing.Image)(resources.GetObject("btnXML.Image")));
+            this.btnXML.Location = new System.Drawing.Point(1220, 154);
+            this.btnXML.Name = "btnXML";
+            this.btnXML.Size = new System.Drawing.Size(47, 50);
+            this.btnXML.TabIndex = 23;
+            this.btnXML.UseVisualStyleBackColor = true;
+            // 
             // Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(913, 521);
+            this.ClientSize = new System.Drawing.Size(1279, 636);
             this.ControlBox = false;
+            this.Controls.Add(this.btnXML);
+            this.Controls.Add(this.btnPDF);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dgDetalleFacturacion);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.lblTotalDebito);
             this.Controls.Add(this.lblTotalCredito);
@@ -296,9 +350,11 @@
             this.Controls.Add(this.btnBoleta);
             this.Controls.Add(this.btnFactura);
             this.Name = "Ventas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VENTAS";
             this.Load += new System.EventHandler(this.Ventas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgFacturacion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgDetalleFacturacion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,5 +382,9 @@
         private System.Windows.Forms.Label lblTotalDebito;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.DataGridView dgDetalleFacturacion;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnPDF;
+        private System.Windows.Forms.Button btnXML;
     }
 }

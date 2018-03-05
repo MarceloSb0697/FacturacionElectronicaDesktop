@@ -12,24 +12,18 @@ namespace FacturacionElectronicaDesktop
     using System;
     using System.Collections.Generic;
     
-    public partial class Moneda
+    public partial class TipoCuentaBancaria
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Moneda()
+        public TipoCuentaBancaria()
         {
             this.CuentaBancaria = new HashSet<CuentaBancaria>();
-            this.FacturacionElectronica = new HashSet<FacturacionElectronica>();
-            this.Productos = new HashSet<Productos>();
         }
     
-        public string codigo_moneda { get; set; }
-        public string descripcion_moneda { get; set; }
+        public int id_tipo { get; set; }
+        public string descripcion_tipo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CuentaBancaria> CuentaBancaria { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FacturacionElectronica> FacturacionElectronica { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Productos> Productos { get; set; }
     }
 }
