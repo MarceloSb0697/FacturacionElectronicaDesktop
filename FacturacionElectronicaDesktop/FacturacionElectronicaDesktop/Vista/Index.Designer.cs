@@ -79,6 +79,7 @@
             this.btnResumen.Size = new System.Drawing.Size(99, 108);
             this.btnResumen.TabIndex = 7;
             this.btnResumen.UseVisualStyleBackColor = true;
+            this.btnResumen.Click += new System.EventHandler(this.btnResumen_Click);
             // 
             // btnPercepcion
             // 

@@ -146,6 +146,7 @@
             this.btnExportar.TabIndex = 18;
             this.btnExportar.Text = "EXP.EXCEL";
             this.btnExportar.UseVisualStyleBackColor = false;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // btnImprimir
             // 

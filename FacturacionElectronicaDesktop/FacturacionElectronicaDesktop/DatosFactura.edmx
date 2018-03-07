@@ -95,6 +95,18 @@
           <Property Name="valor_unitario" Type="decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="precio_unitario" Type="decimal" Precision="8" Scale="2" Nullable="false" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'FactronLCT.dbo.ResumenBoleta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ResumenBoleta">
+          <Key>
+            <PropertyRef Name="numero" />
+            <PropertyRef Name="fecha_generacion" />
+            <PropertyRef Name="fecha_emision" />
+          </Key>
+          <Property Name="numero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha_generacion" Type="date" Nullable="false" />
+          <Property Name="fecha_emision" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="Tipo_DocumentoElectronico">
           <Key>
             <PropertyRef Name="codigo_documentoElectronico" />
@@ -431,6 +443,13 @@
           <EntitySet Name="TipoCuentaBancaria" EntityType="Self.TipoCuentaBancaria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unidad_Medida" EntityType="Self.Unidad_Medida" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResumenBoleta" EntityType="Self.ResumenBoleta" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ResumenBoleta].[numero] AS [numero], 
+    [ResumenBoleta].[fecha_generacion] AS [fecha_generacion], 
+    [ResumenBoleta].[fecha_emision] AS [fecha_emision]
+    FROM [dbo].[ResumenBoleta] AS [ResumenBoleta]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__Cliente__codigo___1BFD2C07" Association="Self.FK__Cliente__codigo___1BFD2C07">
             <End Role="Documento" EntitySet="Documento" />
             <End Role="Cliente" EntitySet="Cliente" />
@@ -662,6 +681,16 @@
           <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
+        <EntityType Name="ResumenBoleta">
+          <Key>
+            <PropertyRef Name="numero" />
+            <PropertyRef Name="fecha_generacion" />
+            <PropertyRef Name="fecha_emision" />
+          </Key>
+          <Property Name="numero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha_generacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_emision" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
         <Association Name="FK__Cliente__codigo___1BFD2C07">
           <End Role="Documento" Type="Self.Documento" Multiplicity="1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
@@ -834,6 +863,7 @@
           <EntitySet Name="TipoCuentaBancaria" EntityType="Self.TipoCuentaBancaria" />
           <EntitySet Name="Unidad_Medida" EntityType="Self.Unidad_Medida" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="ResumenBoleta" EntityType="Self.ResumenBoleta" />
           <AssociationSet Name="FK__Cliente__codigo___1BFD2C07" Association="Self.FK__Cliente__codigo___1BFD2C07">
             <End Role="Documento" EntitySet="Documento" />
             <End Role="Cliente" EntitySet="Cliente" />
@@ -1179,6 +1209,15 @@
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResumenBoleta">
+            <EntityTypeMapping TypeName="FactronLCTModel.ResumenBoleta">
+              <MappingFragment StoreEntitySet="ResumenBoleta">
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="fecha_generacion" ColumnName="fecha_generacion" />
+                <ScalarProperty Name="fecha_emision" ColumnName="fecha_emision" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

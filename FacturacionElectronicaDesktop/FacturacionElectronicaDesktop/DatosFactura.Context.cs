@@ -42,6 +42,7 @@ namespace FacturacionElectronicaDesktop
         public virtual DbSet<TipoCuentaBancaria> TipoCuentaBancaria { get; set; }
         public virtual DbSet<Unidad_Medida> Unidad_Medida { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<ResumenBoleta> ResumenBoleta { get; set; }
     
         public virtual int ActualizarCliente(string cod_doc, string raz_soc, string dir, string email, string tel_mov, string tel_fijo, string num_ruc)
         {

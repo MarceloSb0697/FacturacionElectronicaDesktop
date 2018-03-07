@@ -65,5 +65,13 @@ namespace FacturacionElectronicaDesktop.Vista
             cb.Closed += (s, args) => this.Close();
             cb.Show();
         }
+
+        private void btnResumen_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ResumenBoleta rb = new ResumenBoleta();
+            rb.Closed += (s, args) => this.Close();
+            rb.Show();
+        }
     }
 }
